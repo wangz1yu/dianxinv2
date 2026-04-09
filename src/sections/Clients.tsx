@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { assetUrl } from '@/lib/assets';
+import { EditorialSectionHeader } from '@/components/editorial/SectionHeader';
 
 const clients = [
   { name: '美团', logo: assetUrl('images/logo-meituan.jpg') },
@@ -25,32 +26,35 @@ const duplicatedClients = [...clients, ...clients, ...clients];
 
 export default function Clients() {
   return (
-    <section className="py-24 bg-[hsl(var(--background))] overflow-hidden">
+    <section className="py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mb-4">
-            我们的客户
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            自2023年以来，以智能用工赋能行业领先品牌增长
-          </p>
-          <Button className="rounded-full px-8">
-            立即咨询
-          </Button>
+          <EditorialSectionHeader
+            label="CLIENTS / 合作名录"
+            title={
+              <>
+                画廊带：<span className="text-gold-grad">干净的品牌露出</span>
+              </>
+            }
+            desc="保留原无限滚动动效，但整体容器更像“画廊展示带”。"
+          />
+          <div className="mt-6">
+            <Button className="rounded-full px-8">立即咨询</Button>
+          </div>
         </motion.div>
 
         {/* Client Logos - Infinite Scroll */}
-        <div className="relative">
+        <div className="relative border-y border-[rgba(20,18,14,0.12)] py-5">
           {/* Gradient Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[hsl(var(--background))] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[hsl(var(--background))] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[hsl(var(--paper))] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[hsl(var(--paper))] to-transparent z-10 pointer-events-none" />
 
           {/* Scrolling Container */}
           <div className="flex overflow-hidden">
@@ -66,7 +70,7 @@ export default function Clients() {
               {duplicatedClients.map((client, index) => (
                 <div
                   key={`scroll-${index}`}
-                  className="flex-shrink-0 w-20 h-20 bg-white keep-white rounded-xl flex items-center justify-center transition-all group border border-white/10 overflow-hidden shadow-[0_14px_40px_rgba(0,0,0,0.35)]"
+                  className="flex-shrink-0 w-24 h-16 bg-white rounded-xl flex items-center justify-center transition-all group border border-[rgba(20,18,14,0.10)] overflow-hidden"
                 >
                   <img 
                     src={client.logo} 
@@ -80,9 +84,9 @@ export default function Clients() {
         </div>
 
         {/* Second Row - Reverse Direction */}
-        <div className="relative mt-6">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[hsl(var(--background))] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[hsl(var(--background))] to-transparent z-10 pointer-events-none" />
+        <div className="relative mt-5 border-b border-[rgba(20,18,14,0.12)] pb-5">
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[hsl(var(--paper))] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[hsl(var(--paper))] to-transparent z-10 pointer-events-none" />
 
           <div className="flex overflow-hidden">
             <motion.div
@@ -97,7 +101,7 @@ export default function Clients() {
               {[...duplicatedClients].reverse().map((client, index) => (
                 <div
                   key={`scroll-reverse-${index}`}
-                  className="flex-shrink-0 w-20 h-20 bg-white keep-white rounded-xl flex items-center justify-center transition-all group border border-white/10 overflow-hidden shadow-[0_14px_40px_rgba(0,0,0,0.35)]"
+                  className="flex-shrink-0 w-24 h-16 bg-white rounded-xl flex items-center justify-center transition-all group border border-[rgba(20,18,14,0.10)] overflow-hidden"
                 >
                   <img 
                     src={client.logo} 
