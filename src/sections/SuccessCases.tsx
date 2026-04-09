@@ -3,39 +3,13 @@ import { ArrowRight, TrendingUp, Clock, ShieldCheck, Download } from 'lucide-rea
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { trackEvent } from '@/lib/analytics';
+import { HOME25_CASES } from '@/content/home25.copy';
 
-const cases = [
-  {
-    industry: '外卖配送',
-    customerType: '全国连锁平台',
-    onboarding: '10个工作日',
-    challenge: '高峰期骑手结算压力大，人工对账易出错。',
-    efficiency: '+65%',
-    cost: '-19%',
-    compliance: '劳务纠纷率 -41%',
-    icon: Clock,
-  },
-  {
-    industry: '网约车',
-    customerType: '多城市运力服务商',
-    onboarding: '14个工作日',
-    challenge: '跨区域主体管理复杂，支付与票据规则不统一。',
-    efficiency: '+58%',
-    cost: '-23%',
-    compliance: '票据合规率 99.2%',
-    icon: ShieldCheck,
-  },
-  {
-    industry: '物流仓配',
-    customerType: '仓配一体化企业',
-    onboarding: '7个工作日',
-    challenge: '临时用工波峰明显，招聘结算链路长。',
-    efficiency: '+72%',
-    cost: '-16%',
-    compliance: '留痕覆盖 100%',
-    icon: TrendingUp,
-  },
-];
+const iconMap = {
+  外卖配送: Clock,
+  网约车: ShieldCheck,
+  物流仓配: TrendingUp,
+} as const;
 
 export default function SuccessCases() {
   return (
@@ -53,8 +27,8 @@ export default function SuccessCases() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {cases.map((item, index) => {
-            const Icon = item.icon;
+          {HOME25_CASES.map((item, index) => {
+            const Icon = iconMap[item.industry];
             return (
               <motion.article
                 key={item.industry}

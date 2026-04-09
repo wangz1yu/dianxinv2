@@ -27,7 +27,7 @@ const mockRisks: RiskItem[] = [
   { id: 4, name: '赵六', idCard: '3401********3456', riskType: '身份核验', riskLevel: 'low', status: 'checking' },
 ];
 
-export default function DemoRiskControl() {
+export default function DemoRiskControl({ embedded = false }: { embedded?: boolean }) {
   const [risks, setRisks] = useState<RiskItem[]>(mockRisks);
   const [isScanning, setIsScanning] = useState(false);
   const [scanProgress, setScanProgress] = useState(0);
@@ -78,10 +78,9 @@ export default function DemoRiskControl() {
   const passedCount = risks.filter(r => r.status === 'passed').length;
   const rejectedCount = risks.filter(r => r.status === 'rejected').length;
 
-  return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+  const content = (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -273,6 +272,8 @@ export default function DemoRiskControl() {
           </motion.div>
         </div>
       </div>
-    </section>
   );
+
+  if (embedded) return content;
+  return <section className="py-24 bg-white">{content}</section>;
 }

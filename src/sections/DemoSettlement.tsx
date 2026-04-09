@@ -25,7 +25,7 @@ const mockEmployees: Employee[] = [
   { id: 4, name: '赵六', phone: '136****3456', amount: 4500, status: 'pending' },
 ];
 
-export default function DemoSettlement() {
+export default function DemoSettlement({ embedded = false }: { embedded?: boolean }) {
   const [employees, setEmployees] = useState<Employee[]>(mockEmployees);
   const [isProcessing, setIsProcessing] = useState(false);
   const [completedCount, setCompletedCount] = useState(0);
@@ -70,10 +70,9 @@ export default function DemoSettlement() {
     setIsProcessing(false);
   };
 
-  return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+  const content = (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -241,6 +240,8 @@ export default function DemoSettlement() {
           </motion.div>
         </div>
       </div>
-    </section>
   );
+
+  if (embedded) return content;
+  return <section className="py-24 bg-white">{content}</section>;
 }

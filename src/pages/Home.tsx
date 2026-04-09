@@ -1,17 +1,15 @@
 import { useEffect } from 'react';
 import Navbar from '@/sections/Navbar';
 import Hero from '@/sections/Hero';
+import ProblemStrip from '@/sections/ProblemStrip';
+import SolutionOverview from '@/sections/SolutionOverview';
 import Services from '@/sections/Services';
-import Pricing from '@/sections/Pricing';
 import Qualifications from '@/sections/Qualifications';
 import CTA from '@/sections/CTA';
-import Ecosystem from '@/sections/Ecosystem';
 import Clients from '@/sections/Clients';
 import SuccessCases from '@/sections/SuccessCases';
 import FAQ from '@/sections/FAQ';
-import DemoSettlement from '@/sections/DemoSettlement';
-import DemoContract from '@/sections/DemoContract';
-import DemoRiskControl from '@/sections/DemoRiskControl';
+import DemosStory from '@/sections/DemosStory';
 import Footer from '@/sections/Footer';
 
 export default function Home() {
@@ -24,17 +22,15 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <ProblemStrip />
+        <SolutionOverview />
         <Services />
-        <Pricing />
+        <DemosStory />
         <Qualifications />
-        <CTA />
-        <Ecosystem />
-        <Clients />
         <SuccessCases />
-        <DemoSettlement />
-        <DemoContract />
-        <DemoRiskControl />
+        <Clients />
         <FAQ />
+        <CTA />
       </main>
       <Footer />
     </div>

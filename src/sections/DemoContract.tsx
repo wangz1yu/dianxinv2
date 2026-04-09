@@ -19,7 +19,7 @@ const steps = [
   { id: 4, title: '区块链存证', icon: Lock, desc: '合同上链永久保存' },
 ];
 
-export default function DemoContract() {
+export default function DemoContract({ embedded = false }: { embedded?: boolean }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -48,10 +48,9 @@ export default function DemoContract() {
     setIsAnimating(false);
   };
 
-  return (
-    <section className="py-24 bg-[#F5F7FA]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+  const content = (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Demo Card */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -254,6 +253,8 @@ export default function DemoContract() {
           </motion.div>
         </div>
       </div>
-    </section>
   );
+
+  if (embedded) return content;
+  return <section className="py-24 bg-[#F5F7FA]">{content}</section>;
 }
