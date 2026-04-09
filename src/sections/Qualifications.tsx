@@ -10,6 +10,8 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { assetUrl } from '@/lib/assets';
+import { EditorialSectionHeader } from '@/components/editorial/SectionHeader';
+import { PaperPanel } from '@/components/editorial/PaperPanel';
 
 const qualifications = [
   {
@@ -73,52 +75,107 @@ export default function Qualifications() {
   );
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 text-center"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h3 className="text-2xl font-semibold text-gray-900">企业平台资质展示</h3>
-          <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-            平台拥有的软件著作权、公安安全等级保护、互联网信息服务等资质。
-          </p>
+          <EditorialSectionHeader
+            label="QUALIFICATIONS / 资质展示"
+            title={
+              <>
+                目录 + 说明页：<span className="text-gold-grad">像白皮书附录</span>
+              </>
+            }
+            desc="保留原弹窗预览功能，但改成“证照目录 + 说明页”的画册结构。"
+          />
         </motion.div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-sm">
-          <div className="flex flex-col md:flex-row items-start gap-6">
-            {/* Left: preview and enlarge button */}
-            <div className="flex-1">
+        <div className="mt-8 grid gap-8 lg:grid-cols-12">
+          {/* Left: directory */}
+          <div className="lg:col-span-5">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="border-t border-[rgba(20,18,14,0.12)]"
+            >
+              {qualifications.map((q) => (
+                <motion.button
+                  key={q.id}
+                  variants={itemVariants}
+                  className="relative w-full text-left py-4"
+                  onClick={() => handleSelectQualification(q)}
+                  type="button"
+                >
+                  <div className="flex items-start justify-between gap-4 border-b border-[rgba(20,18,14,0.12)] pb-4">
+                    <div>
+                      <div className="font-display text-base tracking-[-0.01em] text-[hsl(var(--ink))]">
+                        {q.title}
+                      </div>
+                      <div className="mt-2 text-xs leading-[1.55] text-[rgba(20,18,14,0.55)]">
+                        {q.summary}
+                      </div>
+                    </div>
+                    <span className="text-[11px] tracking-[0.18em] uppercase text-[rgba(20,18,14,0.55)]">
+                      CERT
+                    </span>
+                  </div>
+                  {selected.id === q.id ? (
+                    <span className="absolute left-0 -bottom-px h-[3px] w-28 bg-gold-grad" />
+                  ) : null}
+                </motion.button>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right: detail panel */}
+          <div className="lg:col-span-7">
+            <PaperPanel className="p-6 sm:p-7">
+              <div className="text-xs tracking-[0.22em] uppercase text-[rgba(20,18,14,0.55)]">
+                SELECTED / 选中资质
+              </div>
+              <h4 className="mt-2 font-display text-[1.4rem] tracking-[-0.02em] text-[hsl(var(--ink))]">
+                {selected.title}
+              </h4>
+              <p className="mt-2 text-sm leading-[1.75] text-[rgba(20,18,14,0.72)]">
+                {selected.detail}
+              </p>
+
               <motion.div
                 key={selected.id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.25 }}
-                className="rounded-xl overflow-hidden border border-gray-100 bg-gray-50 max-h-40"
+                className="mt-4 rounded-[14px] overflow-hidden border border-[rgba(20,18,14,0.10)] bg-white/60"
               >
                 <img
                   src={selected.thumbImage}
                   alt={selected.title}
-                  className="w-full h-40 object-contain transition-opacity duration-300 hover:opacity-90"
+                  className="w-full h-44 object-contain"
                   loading="lazy"
                 />
               </motion.div>
-              <h4 className="mt-4 text-lg font-semibold text-gray-900">{selected.title}</h4>
-              <p className="text-sm text-gray-600 mt-2">{selected.summary}</p>
 
-              <div className="mt-4">
+              <div className="mt-5 flex flex-wrap items-center gap-3">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button variant="outline" className="rounded-full">
+                    <Button variant="outline" className="rounded-full bg-white/60">
                       放大预览
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
                     <div className="w-full">
-                      <img src={selected.fullImage} alt={selected.title} className="w-full h-auto" loading="lazy" />
+                      <img
+                        src={selected.fullImage}
+                        alt={selected.title}
+                        className="w-full h-auto"
+                        loading="lazy"
+                      />
                     </div>
                     <div className="mt-4">
                       <DialogTitle>{selected.title}</DialogTitle>
@@ -131,36 +188,12 @@ export default function Qualifications() {
                     </div>
                   </DialogContent>
                 </Dialog>
-              </div>
-            </div>
 
-            {/* Right: list thumbnails (click to select) */}
-            <div className="w-full md:w-96">
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="space-y-3"
-              >
-                {qualifications.map((q) => (
-                  <motion.div
-                    key={q.id}
-                    variants={itemVariants}
-                    className={`flex items-center gap-4 p-3 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors border ${
-                      selected.id === q.id ? 'border-blue-100 bg-blue-50' : 'border-transparent'
-                    }`}
-                    onClick={() => handleSelectQualification(q)}
-                  >
-                    <img src={q.thumbImage} alt={q.title} className="w-16 h-12 object-contain flex-shrink-0" loading="lazy" />
-                    <div className="flex-1">
-                      <div className="font-medium text-gray-900">{q.title}</div>
-                      <div className="text-xs text-gray-500">{q.summary}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
+                <a href={selected.fullImage} target="_blank" rel="noopener noreferrer">
+                  <Button className="rounded-full">下载资质</Button>
+                </a>
+              </div>
+            </PaperPanel>
           </div>
         </div>
       </div>
