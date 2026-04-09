@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Navbar from '@/sections/Navbar';
 import Hero from '@/sections/Hero';
+import TransitionBand from '@/sections/TransitionBand';
 import Services from '@/sections/Services';
 import Pricing from '@/sections/Pricing';
 import Qualifications from '@/sections/Qualifications';
@@ -20,10 +21,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen">
       <Navbar />
       <main>
         <Hero />
+        <TransitionBand />
+        <div className="bg-paper paper-grain relative text-[hsl(var(--ink))]">
         <Services />
         <Pricing />
         <Qualifications />
@@ -35,6 +38,7 @@ export default function Home() {
         <DemoContract />
         <DemoRiskControl />
         <FAQ />
+        </div>
       </main>
       <Footer />
     </div>
