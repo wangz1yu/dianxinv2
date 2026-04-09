@@ -77,7 +77,7 @@ export default function Navbar() {
         <nav
           className={`mt-4 flex items-center justify-between gap-3 rounded-2xl border transition-all duration-300 ${
             isScrolled
-              ? 'border-white/10 bg-[hsl(var(--background))]/80 shadow-[0_18px_60px_rgba(0,0,0,0.45)] backdrop-blur'
+              ? 'border-[rgba(20,18,14,0.12)] bg-white/70 shadow-[0_18px_60px_rgba(20,18,14,0.12)] backdrop-blur'
               : 'border-white/10 bg-white/5 text-white backdrop-blur'
           } px-4 py-3`}
         >
@@ -89,7 +89,7 @@ export default function Navbar() {
               className="w-8 h-8 object-contain"
             />
             <span className={`font-display text-lg tracking-tight ${
-              isScrolled ? 'text-foreground' : 'text-white'
+              isScrolled ? 'text-[hsl(var(--ink))]' : 'text-white'
             }`}>
               点薪云
             </span>
@@ -109,8 +109,8 @@ export default function Navbar() {
                   className={`group relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors ${
                     isScrolled
                       ? isActive(item.href)
-                        ? 'text-foreground'
-                        : 'text-foreground/70 hover:text-foreground'
+                        ? 'text-[hsl(var(--ink))]'
+                        : 'text-[rgba(20,18,14,0.72)] hover:text-[hsl(var(--ink))]'
                       : isActive(item.href)
                         ? 'text-white'
                         : 'text-white/75 hover:text-white'
@@ -124,7 +124,7 @@ export default function Navbar() {
                   )}
                   <span
                     className={`absolute inset-x-3 -bottom-0.5 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
-                      isScrolled ? 'bg-[rgba(251,193,106,0.55)]' : 'bg-[rgba(251,193,106,0.45)]'
+                      isScrolled ? 'bg-[rgba(251,193,106,0.65)]' : 'bg-[rgba(251,193,106,0.45)]'
                     } ${isActive(item.href) ? 'scale-x-100' : ''}`}
                   />
                 </Link>
@@ -132,12 +132,12 @@ export default function Navbar() {
                 {/* Dropdown */}
                 {item.children && activeDropdown === item.label && (
                   <div className="absolute top-full left-0 pt-2">
-                    <div className="min-w-[200px] overflow-hidden rounded-2xl border border-white/10 bg-[hsl(var(--card))] shadow-[0_18px_70px_rgba(0,0,0,0.55)]">
+                    <div className="min-w-[220px] overflow-hidden rounded-2xl border border-[rgba(20,18,14,0.12)] bg-white/90 shadow-[0_18px_70px_rgba(20,18,14,0.14)]">
                       {item.children.map((child) => (
                         <Link
                           key={child.label}
                           to={child.href}
-                          className="block px-4 py-3 text-sm text-foreground/80 hover:bg-white/5 hover:text-foreground transition-colors"
+                          className="block px-4 py-3 text-sm text-[rgba(20,18,14,0.78)] hover:bg-[rgba(251,193,106,0.10)] hover:text-[hsl(var(--ink))] transition-colors"
                         >
                           {child.label}
                         </Link>
@@ -155,7 +155,7 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 className={`rounded-full ${
-                  isScrolled ? 'text-foreground/80 hover:text-foreground hover:bg-white/5' : 'text-white/80 hover:text-white hover:bg-white/10'
+                  isScrolled ? 'text-[rgba(20,18,14,0.78)] hover:text-[hsl(var(--ink))] hover:bg-[rgba(251,193,106,0.10)]' : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 登录结算系统
@@ -171,7 +171,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             className={`lg:hidden p-2 rounded-xl transition-colors ${
-              isScrolled ? 'text-foreground hover:bg-white/5' : 'text-white hover:bg-white/10'
+              isScrolled ? 'text-[hsl(var(--ink))] hover:bg-[rgba(251,193,106,0.10)]' : 'text-white hover:bg-white/10'
             }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -185,14 +185,16 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-3 rounded-3xl border border-white/10 bg-[hsl(var(--card))]/95 shadow-[0_18px_70px_rgba(0,0,0,0.55)] backdrop-blur overflow-hidden">
+          <div className="lg:hidden mt-3 rounded-3xl border border-[rgba(20,18,14,0.12)] bg-white/90 shadow-[0_18px_70px_rgba(20,18,14,0.14)] backdrop-blur overflow-hidden">
             <div className="p-4 space-y-2">
               {navItems.map((item) => (
                 <div key={item.label}>
                   <Link
                     to={item.href}
                     className={`block rounded-2xl px-4 py-3 text-sm font-medium ${
-                      isActive(item.href) ? 'bg-white/5 text-foreground' : 'text-foreground/75 hover:bg-white/5 hover:text-foreground'
+                      isActive(item.href)
+                        ? 'bg-[rgba(251,193,106,0.10)] text-[hsl(var(--ink))]'
+                        : 'text-[rgba(20,18,14,0.78)] hover:bg-[rgba(251,193,106,0.10)] hover:text-[hsl(var(--ink))]'
                     }`}
                     onClick={() => !item.children && setMobileMenuOpen(false)}
                   >
@@ -204,7 +206,7 @@ export default function Navbar() {
                         <Link
                           key={child.label}
                           to={child.href}
-                          className="block px-4 py-2 text-sm text-foreground/65 hover:text-foreground"
+                          className="block px-4 py-2 text-sm text-[rgba(20,18,14,0.65)] hover:text-[hsl(var(--ink))]"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {child.label}
@@ -214,9 +216,9 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
-              <div className="pt-4 border-t border-white/10 flex gap-3">
+              <div className="pt-4 border-t border-[rgba(20,18,14,0.12)] flex gap-3">
                 <a href="https://www.dianxingg.cn" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <Button variant="outline" className="flex-1 rounded-full">
+                  <Button variant="outline" className="flex-1 rounded-full bg-white/70">
                     登录结算系统
                   </Button>
                 </a>

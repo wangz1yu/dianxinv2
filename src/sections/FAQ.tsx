@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { EditorialSectionHeader } from '@/components/editorial/SectionHeader';
 
 const faqItems = [
   {
@@ -36,30 +37,43 @@ const faqItems = [
 
 export default function FAQ() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">常见问题</h2>
-          <p className="text-gray-600">把用户最关心的问题提前说明，降低沟通门槛与决策成本。</p>
+          <EditorialSectionHeader
+            label="FAQ / 常见问题"
+            title={
+              <>
+                问答目录：<span className="text-gold-grad">更像知识页</span>
+              </>
+            }
+            desc="把用户最关心的问题提前说明，降低沟通门槛与决策成本。"
+            align="left"
+          />
         </motion.div>
 
-        <Accordion type="single" collapsible className="w-full space-y-4">
+        <Accordion type="single" collapsible className="w-full border-t border-[rgba(20,18,14,0.12)]">
           {faqItems.map((item, index) => (
             <AccordionItem
               key={item.question}
               value={`item-${index}`}
-              className="border border-gray-200 rounded-2xl px-6"
+              className="border-b border-[rgba(20,18,14,0.12)] px-1"
             >
-              <AccordionTrigger className="text-left text-base font-semibold text-gray-900 hover:no-underline">
-                {item.question}
+              <AccordionTrigger className="text-left text-base font-semibold text-[hsl(var(--ink))] hover:no-underline py-5">
+                <span className="flex items-baseline gap-3">
+                  <span className="text-xs tracking-[0.18em] text-[rgba(20,18,14,0.55)]">
+                    {(index + 1).toString().padStart(2, '0')}
+                  </span>
+                  <span>{item.question}</span>
+                </span>
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed pt-1 pb-5">
+              <AccordionContent className="text-[rgba(20,18,14,0.72)] leading-relaxed pt-0 pb-5">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>
