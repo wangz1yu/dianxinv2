@@ -32,9 +32,9 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-paper paper-grain relative overflow-hidden">
+    <footer className="bg-[#0A1628] text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {/* Logo & Description */}
           <div className="col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
@@ -43,23 +43,23 @@ export default function Footer() {
                 alt="点薪云" 
                 className="w-8 h-8 object-contain"
               />
-              <span className="text-xl font-bold font-display text-[hsl(var(--ink))]">点薪云</span>
+              <span className="text-xl font-bold">点薪云</span>
             </Link>
-            <p className="text-[rgba(20,18,14,0.72)] text-sm mb-6 max-w-xs leading-relaxed">
-              社会化用工方案服务商。以合规、风控与效率为底层能力，帮助企业把用工做成可控系统。
+            <p className="text-gray-400 text-sm mb-6 max-w-xs">
+              为企业提供一站式灵活用工解决方案，助力企业降本增效。
             </p>
             
             {/* Contact Info */}
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm text-[rgba(20,18,14,0.72)]">
+              <div className="flex items-center gap-3 text-sm text-gray-400">
                 <Phone className="w-4 h-4" />
                 <span>17340094007</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-[rgba(20,18,14,0.72)]">
+              <div className="flex items-center gap-3 text-sm text-gray-400">
                 <Mail className="w-4 h-4" />
                 <span>wangziyu@dianxingg.com.cn</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-[rgba(20,18,14,0.72)]">
+              <div className="flex items-center gap-3 text-sm text-gray-400">
                 <MapPin className="w-4 h-4" />
                 <span>安徽省合肥市蜀山区南七街道望江西路华润五彩国际1303室</span>
               </div>
@@ -69,16 +69,15 @@ export default function Footer() {
           {/* Links */}
           {Object.values(footerLinks).map((section) => (
             <div key={section.title}>
-              <h3 className="font-semibold font-display text-[hsl(var(--ink))] mb-4">{section.title}</h3>
-              <ul className="space-y-2">
+              <h3 className="font-semibold text-white mb-4">{section.title}</h3>
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <Link 
                       to={link.href}
-                      className="group inline-flex items-center text-sm text-[rgba(20,18,14,0.72)] hover:text-[hsl(var(--ink))] transition-colors"
+                      className="text-sm text-gray-400 hover:text-white transition-colors"
                     >
                       {link.label}
-                      <span className="ml-2 h-px w-10 bg-[rgba(20,18,14,0.24)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform" />
                     </Link>
                   </li>
                 ))}
@@ -89,20 +88,27 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[rgba(20,18,14,0.12)]">
+      <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-6 text-sm text-[rgba(20,18,14,0.55)]">
-              <span>© 2025 点薪云® 皖ICP备2024034333号</span>
+            <div className="flex items-center gap-6 text-sm text-gray-400">
+              <span>© 2025 点薪云®皖ICP备2024034333号</span>
             </div>
             
             {/* Language Selector */}
-            <div className="flex items-center gap-4 text-sm text-[rgba(20,18,14,0.55)]">
-              <span className="hover:text-[hsl(var(--ink))] cursor-pointer transition-colors">EN</span>
-              <span className="hover:text-[hsl(var(--ink))] cursor-pointer transition-colors">繁體</span>
-              <span className="text-[hsl(var(--ink))] cursor-pointer">简体</span>
+            <div className="flex items-center gap-4 text-sm text-gray-400">
+              <span className="hover:text-white cursor-pointer transition-colors">EN</span>
+              <span className="hover:text-white cursor-pointer transition-colors">繁體</span>
+              <span className="text-white cursor-pointer">简体</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Large Decorative Text */}
+      <div className="relative h-24 overflow-hidden">
+        <div className="absolute bottom-0 left-0 right-0 text-[8rem] md:text-[12rem] font-bold text-gray-800/30 whitespace-nowrap leading-none text-center select-none">
+          点薪云 DIANXINYUN
         </div>
       </div>
     </footer>

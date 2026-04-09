@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/button';
 
 export default function CTA() {
   return (
-    <section className="relative py-28 overflow-hidden">
+    <section className="relative py-32 bg-[hsl(var(--background))] overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
         <motion.div 
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-[rgba(251,193,106,0.20)] rounded-full blur-3xl"
+          className="absolute top-1/3 left-1/4 w-96 h-96 bg-[rgba(251,193,106,0.18)] rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.3, 0.2],
@@ -21,7 +21,7 @@ export default function CTA() {
           }}
         />
         <motion.div 
-          className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[rgba(20,18,14,0.06)] rounded-full blur-3xl"
+          className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[rgba(255,255,255,0.08)] rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.15, 0.25, 0.15],
@@ -60,16 +60,16 @@ export default function CTA() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8 }}
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold font-display text-[hsl(var(--ink))] mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold font-display text-foreground mb-6"
           >
-            让合规与增长，<span className="text-gold-grad">同一条路径</span>
+            不止於用工
           </motion.h2>
           
           <motion.p
@@ -77,7 +77,7 @@ export default function CTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl text-[rgba(20,18,14,0.72)] mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
           >
             在点薪云生态中释放潜力，我们为企业提供全面的灵活用工解决方案，
             确保每一次用工都顺畅、合规、高效。
@@ -99,9 +99,6 @@ export default function CTA() {
                 获取解决方案
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full px-8 bg-white/60">
-              <a href="/#/about/contact">预约演示</a>
             </Button>
           </motion.div>
         </motion.div>

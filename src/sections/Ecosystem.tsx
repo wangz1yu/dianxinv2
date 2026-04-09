@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
 import { Wallet, Shield, Users, FileText, Clock, Smartphone, TrendingUp, Lock } from 'lucide-react';
-import { assetUrl } from '@/lib/assets';
-import { EditorialSectionHeader } from '@/components/editorial/SectionHeader';
 
 const ecosystemItems = [
   { icon: Wallet, label: '智能结算', position: 'top' },
@@ -16,26 +14,22 @@ const ecosystemItems = [
 
 export default function Ecosystem() {
   return (
-    <section className="py-24">
+    <section className="py-24 bg-[#F5F7FA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <EditorialSectionHeader
-            label="ECOSYSTEM / 生态"
-            title={
-              <>
-                在点薪云生态中释放潜力
-              </>
-            }
-            desc="全方位的灵活用工服务生态，覆盖用工全流程。"
-            align="center"
-          />
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            在点薪云生态中释放潜力
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            全方位的灵活用工服务生态，覆盖用工全流程
+          </p>
         </motion.div>
 
         {/* Ecosystem Visual */}
@@ -50,8 +44,8 @@ export default function Ecosystem() {
           >
             <div className="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center">
              {/* 背景白色圆形：尺寸稍微比 Logo 大一点，带一点模糊效果更自然 */}
-            <div className="absolute inset-0 bg-white rounded-full scale-75 shadow-lg shadow-black/5 border border-[rgba(20,18,14,0.10)]"></div>
-            <img src={assetUrl('favicon.png')} alt="Logo" className="relative z-10 h-10 w-auto" />
+            <div className="absolute inset-0 bg-white rounded-full scale-75 shadow-lg shadow-white/20"></div>
+            <img src="https://www.dianxin.love/favicon.png" alt="Logo" className="relative z-10 h-10 w-auto" />
           </div>
           </motion.div>
 
@@ -63,8 +57,8 @@ export default function Ecosystem() {
             transition={{ duration: 1, delay: 0.3 }}
             className="absolute inset-0"
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] border border-[rgba(20,18,14,0.18)] rounded-full" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] border border-[rgba(20,18,14,0.10)] rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] border border-blue-200/50 rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] border border-blue-200/30 rounded-full" />
           </motion.div>
 
           {/* Orbital Items */}
@@ -91,10 +85,10 @@ export default function Ecosystem() {
                   whileHover={{ scale: 1.1 }}
                   className="flex flex-col items-center gap-2 cursor-pointer group"
                 >
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-white/70 rounded-2xl border border-[rgba(20,18,14,0.10)] shadow-lg shadow-black/5 flex items-center justify-center group-hover:shadow-xl group-hover:bg-white transition-all">
-                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-[rgba(20,18,14,0.72)] group-hover:text-[rgba(251,193,106,0.95)] transition-colors" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl group-hover:bg-blue-50 transition-all">
+                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-blue-600" />
                   </div>
-                  <span className="text-xs md:text-sm text-[rgba(20,18,14,0.72)] font-medium whitespace-nowrap">
+                  <span className="text-xs md:text-sm text-gray-600 font-medium whitespace-nowrap">
                     {item.label}
                   </span>
                 </motion.div>
@@ -111,8 +105,8 @@ export default function Ecosystem() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <h3 className="text-2xl font-bold font-display text-[hsl(var(--ink))] mb-3">结算</h3>
-          <p className="text-[rgba(20,18,14,0.72)] max-w-xl mx-auto">
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">结算</h3>
+          <p className="text-gray-600 max-w-xl mx-auto">
             我们为线上与线下用工提供全面的结算解决方案，确保企业获得顺畅无缝的用工体验。
           </p>
         </motion.div>

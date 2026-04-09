@@ -10,8 +10,6 @@ import {
   FileCheck
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { EditorialSectionHeader } from '@/components/editorial/SectionHeader';
-import { PaperPanel } from '@/components/editorial/PaperPanel';
 
 interface RiskItem {
   id: number;
@@ -81,7 +79,7 @@ export default function DemoRiskControl() {
   const rejectedCount = risks.filter(r => r.status === 'rejected').length;
 
   return (
-    <section className="py-24">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -89,34 +87,31 @@ export default function DemoRiskControl() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6 }}
           >
-            <EditorialSectionHeader
-              label="DEMO / 互动演示"
-              title={
-                <>
-                  智能风控审查：<span className="text-gold-grad">多维校验</span>
-                </>
-              }
-              desc="AI驱动的智能风控系统，实时检测用工风险。涵盖身份核验、信用评估、异常行为检测等多维度模型。"
-            />
-
-            <p className="mt-6 text-sm leading-[1.85] text-[rgba(20,18,14,0.72)]">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-100 text-orange-600 rounded-full text-sm font-medium mb-6">
+              <Shield className="w-4 h-4" />
+              互动演示
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              智能风控审查
+            </h2>
+            <p className="text-gray-600 mb-8 leading-relaxed">
               AI驱动的智能风控系统，实时检测用工风险。涵盖身份核验、信用评估、
               异常行为检测等多维度风控模型，保障企业用工安全。
             </p>
             
-            <div className="mt-6 space-y-3 border-t border-[rgba(20,18,14,0.12)]">
+            <div className="space-y-4">
               {[
                 { icon: Search, text: '实时身份核验，对接公安系统' },
                 { icon: AlertTriangle, text: '信用评分模型，预测用工风险' },
                 { icon: FileCheck, text: '异常行为检测，防范欺诈风险' },
               ].map((item, index) => (
-                <div key={index} className="flex items-center gap-3 py-3 border-b border-[rgba(20,18,14,0.08)]">
-                  <div className="w-10 h-10 bg-white/65 border border-[rgba(20,18,14,0.10)] rounded-lg flex items-center justify-center">
-                    <item.icon className="w-5 h-5 text-[rgba(20,18,14,0.72)]" />
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-orange-600" />
                   </div>
-                  <span className="text-[rgba(20,18,14,0.84)]">{item.text}</span>
+                  <span className="text-gray-700">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -127,33 +122,25 @@ export default function DemoRiskControl() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6 }}
           >
-            <PaperPanel className="overflow-hidden">
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-2xl overflow-hidden">
               {/* Header */}
-              <div
-                className="p-6 border-b border-[rgba(20,18,14,0.10)]"
-                style={{
-                  background:
-                    "radial-gradient(700px 240px at 18% 0%, rgba(251,193,106,0.18), transparent 58%), rgba(255,255,255,0.65)",
-                }}
-              >
+              <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-[rgba(251,193,106,0.12)] border border-[rgba(251,193,106,0.25)] rounded-2xl flex items-center justify-center">
-                      <Shield className="w-7 h-7 text-[rgba(20,18,14,0.72)]" />
-                    </div>
+                    <Shield className="w-8 h-8 text-white" />
                     <div>
-                      <p className="text-[rgba(20,18,14,0.55)] text-sm">风控系统</p>
-                      <p className="text-[hsl(var(--ink))] font-bold text-lg">智能风险检测</p>
+                      <p className="text-orange-100 text-sm">风控系统</p>
+                      <p className="text-white font-bold text-lg">智能风险检测</p>
                     </div>
                   </div>
                   {showResult && (
                     <div className="text-right">
-                      <p className="text-[rgba(20,18,14,0.55)] text-sm">检测结果</p>
-                      <p className="text-[hsl(var(--ink))] font-bold">
-                        <span className="text-[rgba(34,197,94,0.85)]">{passedCount}</span> 通过 /{' '}
-                        <span className="text-[rgba(239,68,68,0.85)]">{rejectedCount}</span> 异常
+                      <p className="text-orange-100 text-sm">检测结果</p>
+                      <p className="text-white font-bold">
+                        <span className="text-green-400">{passedCount}</span> 通过 / 
+                        <span className="text-red-400">{rejectedCount}</span> 异常
                       </p>
                     </div>
                   )}
@@ -163,22 +150,22 @@ export default function DemoRiskControl() {
               {/* Progress Bar */}
               {isScanning && (
                 <div className="px-6 pt-4">
-                  <div className="flex items-center justify-between text-sm text-[rgba(20,18,14,0.55)] mb-2">
+                  <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
                     <span>正在扫描...</span>
                     <span>{scanProgress}%</span>
                   </div>
-                  <div className="h-2 bg-[rgba(20,18,14,0.12)] rounded-full overflow-hidden">
+                  <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${scanProgress}%` }}
-                      className="h-full bg-gold-grad"
+                      className="h-full bg-gradient-to-r from-orange-500 to-orange-600"
                     />
                   </div>
                 </div>
               )}
 
               {/* Risk List */}
-              <div className="p-6 space-y-3 bg-white/55">
+              <div className="p-6 space-y-3">
                 <AnimatePresence>
                   {risks.map((risk) => (
                     <motion.div
@@ -187,19 +174,19 @@ export default function DemoRiskControl() {
                       animate={{ opacity: 1, x: 0 }}
                       className={`flex items-center justify-between p-4 rounded-xl transition-all ${
                         risk.status === 'passed' 
-                          ? 'bg-[rgba(34,197,94,0.10)] border border-[rgba(34,197,94,0.22)]' 
+                          ? 'bg-green-500/10 border border-green-500/20' 
                           : risk.status === 'rejected'
-                          ? 'bg-[rgba(239,68,68,0.10)] border border-[rgba(239,68,68,0.22)]'
-                          : 'bg-white/70 border border-[rgba(20,18,14,0.10)]'
+                          ? 'bg-red-500/10 border border-red-500/20'
+                          : 'bg-white/5 border border-white/10'
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                           risk.status === 'passed' 
-                            ? 'bg-[rgba(34,197,94,0.85)]' 
+                            ? 'bg-green-500' 
                             : risk.status === 'rejected'
-                            ? 'bg-[rgba(239,68,68,0.85)]'
-                            : 'bg-[rgba(251,193,106,0.95)]'
+                            ? 'bg-red-500'
+                            : 'bg-gray-600'
                         }`}>
                           {risk.status === 'passed' ? (
                             <CheckCircle className="w-5 h-5 text-white" />
@@ -210,18 +197,18 @@ export default function DemoRiskControl() {
                           )}
                         </div>
                         <div>
-                          <p className="text-[rgba(20,18,14,0.92)] font-medium">{risk.name}</p>
-                          <p className="text-[rgba(20,18,14,0.55)] text-sm">{risk.idCard}</p>
+                          <p className="text-white font-medium">{risk.name}</p>
+                          <p className="text-gray-400 text-sm">{risk.idCard}</p>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-[rgba(20,18,14,0.82)] text-sm">{risk.riskType}</p>
+                        <p className="text-gray-300 text-sm">{risk.riskType}</p>
                         <span className={`text-xs px-2 py-1 rounded-full ${
                           risk.riskLevel === 'low' 
-                            ? 'bg-[rgba(34,197,94,0.14)] text-[rgba(34,197,94,0.85)]'
+                            ? 'bg-green-500/20 text-green-400'
                             : risk.riskLevel === 'medium'
-                            ? 'bg-[rgba(251,193,106,0.14)] text-[rgba(20,18,14,0.72)]'
-                            : 'bg-[rgba(239,68,68,0.14)] text-[rgba(239,68,68,0.85)]'
+                            ? 'bg-yellow-500/20 text-yellow-400'
+                            : 'bg-red-500/20 text-red-400'
                         }`}>
                           {risk.riskLevel === 'low' ? '低风险' : risk.riskLevel === 'medium' ? '中风险' : '高风险'}
                         </span>
@@ -232,7 +219,7 @@ export default function DemoRiskControl() {
               </div>
 
               {/* Action Button */}
-              <div className="p-6 pt-0 bg-white/55">
+              <div className="p-6 pt-0">
                 <AnimatePresence mode="wait">
                   {!showResult ? (
                     <motion.div
@@ -242,7 +229,7 @@ export default function DemoRiskControl() {
                       exit={{ opacity: 0 }}
                     >
                       <Button 
-                        className="w-full rounded-xl py-6 text-lg font-medium"
+                        className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-xl py-6 text-lg font-medium"
                         onClick={startScan}
                         disabled={isScanning}
                       >
@@ -272,7 +259,7 @@ export default function DemoRiskControl() {
                       </div>
                       <Button 
                         variant="outline" 
-                        className="rounded-full bg-white/60"
+                        className="border-white/20 text-black hover:bg-white/10"
                         onClick={resetDemo}
                       >
                         <RefreshCw className="w-4 h-4 mr-2" />
@@ -282,7 +269,7 @@ export default function DemoRiskControl() {
                   )}
                 </AnimatePresence>
               </div>
-            </PaperPanel>
+            </div>
           </motion.div>
         </div>
       </div>

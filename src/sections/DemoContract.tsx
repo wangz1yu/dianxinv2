@@ -11,8 +11,6 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { EditorialSectionHeader } from '@/components/editorial/SectionHeader';
-import { PaperPanel } from '@/components/editorial/PaperPanel';
 
 const steps = [
   { id: 1, title: '身份认证', icon: User, desc: '实名认证确保身份真实' },
@@ -51,7 +49,7 @@ export default function DemoContract() {
   };
 
   return (
-    <section className="py-24">
+    <section className="py-24 bg-[#F5F7FA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Demo Card */}
@@ -59,10 +57,10 @@ export default function DemoContract() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6 }}
             className="order-2 lg:order-1"
           >
-            <PaperPanel className="p-8">
+            <div className="bg-white rounded-3xl shadow-xl p-8">
               {/* Step Indicators */}
               <div className="flex justify-between mb-8">
                 {steps.map((step, index) => {
@@ -74,7 +72,7 @@ export default function DemoContract() {
                       <motion.div
                         animate={{
                           scale: isActive ? 1.1 : 1,
-                          backgroundColor: isActive ? '#fbc16a' : isPast ? '#10B981' : 'rgba(20,18,14,0.12)',
+                          backgroundColor: isActive ? '#0066CC' : isPast ? '#10B981' : '#E5E7EB',
                         }}
                         className="w-10 h-10 rounded-full flex items-center justify-center mb-2"
                       >
@@ -84,11 +82,7 @@ export default function DemoContract() {
                           <span className="text-white font-medium text-sm">{step.id}</span>
                         )}
                       </motion.div>
-                      <span
-                        className={`text-xs ${
-                          isActive ? 'text-[rgba(20,18,14,0.86)] font-medium' : 'text-[rgba(20,18,14,0.55)]'
-                        }`}
-                      >
+                      <span className={`text-xs ${isActive ? 'text-blue-600 font-medium' : 'text-gray-400'}`}>
                         {step.title}
                       </span>
                     </div>
@@ -105,20 +99,20 @@ export default function DemoContract() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <div className="bg-white/70 border border-[rgba(20,18,14,0.10)] rounded-2xl p-6 mb-6 min-h-[200px]">
+                    <div className="bg-gray-50 rounded-2xl p-6 mb-6 min-h-[200px]">
                       {currentStep === 0 && (
                         <div className="text-center">
-                          <div className="w-16 h-16 bg-[rgba(251,193,106,0.12)] border border-[rgba(251,193,106,0.25)] rounded-full flex items-center justify-center mx-auto mb-4">
-                            <User className="w-8 h-8 text-[rgba(20,18,14,0.72)]" />
+                          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <User className="w-8 h-8 text-blue-600" />
                           </div>
-                          <h4 className="text-lg font-semibold text-[hsl(var(--ink))] mb-2">身份认证中...</h4>
-                          <p className="text-[rgba(20,18,14,0.55)]">正在验证用户身份信息</p>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-2">身份认证中...</h4>
+                          <p className="text-gray-500">正在验证用户身份信息</p>
                           <div className="mt-4 flex justify-center">
                             <motion.div
                               animate={{ rotate: 360 }}
                               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                             >
-                              <RefreshCw className="w-6 h-6 text-[rgba(251,193,106,0.95)]" />
+                              <RefreshCw className="w-6 h-6 text-blue-600" />
                             </motion.div>
                           </div>
                         </div>
@@ -126,35 +120,35 @@ export default function DemoContract() {
                       {currentStep === 1 && (
                         <div>
                           <div className="flex items-center gap-2 mb-4">
-                            <FileText className="w-5 h-5 text-[rgba(20,18,14,0.72)]" />
-                            <span className="font-medium text-[hsl(var(--ink))]">灵活用工服务协议</span>
+                            <FileText className="w-5 h-5 text-blue-600" />
+                            <span className="font-medium text-gray-900">灵活用工服务协议</span>
                           </div>
-                          <div className="space-y-2 text-sm text-[rgba(20,18,14,0.72)]">
+                          <div className="space-y-2 text-sm text-gray-600">
                             <p>1. 服务内容与范围</p>
                             <p>2. 结算方式与周期</p>
                             <p>3. 双方权利与义务</p>
                             <p>4. 保密条款</p>
                             <p>5. 争议解决</p>
                           </div>
-                          <div className="mt-4 p-3 bg-[rgba(251,193,106,0.10)] border border-[rgba(251,193,106,0.22)] rounded-lg">
-                            <p className="text-sm text-[rgba(251,193,106,0.95)]">✓ 合同条款已阅读并同意</p>
+                          <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                            <p className="text-sm text-blue-600">✓ 合同条款已阅读并同意</p>
                           </div>
                         </div>
                       )}
                       {currentStep === 2 && (
                         <div className="text-center">
-                          <div className="w-16 h-16 bg-[rgba(251,193,106,0.12)] border border-[rgba(251,193,106,0.25)] rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Fingerprint className="w-8 h-8 text-[rgba(20,18,14,0.72)]" />
+                          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Fingerprint className="w-8 h-8 text-blue-600" />
                           </div>
-                          <h4 className="text-lg font-semibold text-[hsl(var(--ink))] mb-2">电子签名中...</h4>
-                          <p className="text-[rgba(20,18,14,0.55)]">使用生物识别技术进行签名验证</p>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-2">电子签名中...</h4>
+                          <p className="text-gray-500">使用生物识别技术进行签名验证</p>
                           <div className="mt-4">
-                            <div className="h-2 bg-[rgba(20,18,14,0.12)] rounded-full overflow-hidden">
+                            <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                               <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: '100%' }}
                                 transition={{ duration: 1 }}
-                                className="h-full bg-gold-grad"
+                                className="h-full bg-blue-600"
                               />
                             </div>
                           </div>
@@ -162,12 +156,12 @@ export default function DemoContract() {
                       )}
                       {currentStep === 3 && (
                         <div className="text-center">
-                          <div className="w-16 h-16 bg-[rgba(251,193,106,0.12)] border border-[rgba(251,193,106,0.25)] rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Lock className="w-8 h-8 text-[rgba(20,18,14,0.72)]" />
+                          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Lock className="w-8 h-8 text-blue-600" />
                           </div>
-                          <h4 className="text-lg font-semibold text-[hsl(var(--ink))] mb-2">区块链存证中...</h4>
-                          <p className="text-[rgba(20,18,14,0.55)]">合同哈希值正在写入区块链</p>
-                          <div className="mt-4 font-mono text-xs text-[rgba(20,18,14,0.45)] bg-white/65 border border-[rgba(20,18,14,0.10)] p-2 rounded">
+                          <h4 className="text-lg font-semibold text-gray-900 mb-2">区块链存证中...</h4>
+                          <p className="text-gray-500">合同哈希值正在写入区块链</p>
+                          <div className="mt-4 font-mono text-xs text-gray-400 bg-gray-100 p-2 rounded">
                             0x7f8a9b...3e4d5c6b
                           </div>
                         </div>
@@ -175,7 +169,7 @@ export default function DemoContract() {
                     </div>
 
                     <Button 
-                      className="w-full rounded-xl py-6"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-6"
                       onClick={startDemo}
                       disabled={isAnimating}
                     >
@@ -205,14 +199,13 @@ export default function DemoContract() {
                     className="text-center py-8"
                   >
                     <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Shield className="w-10 h-10 text-[rgba(34,197,94,0.85)]" />
+                      <Shield className="w-10 h-10 text-green-600" />
                     </div>
-                    <h4 className="text-xl font-semibold text-[hsl(var(--ink))] mb-2">合同签署完成！</h4>
-                    <p className="text-[rgba(20,18,14,0.55)] mb-2">合同已上链存证，具有法律效力</p>
-                    <p className="text-sm text-[rgba(20,18,14,0.45)] mb-6">存证哈希: 0x7f8a9b2c3d4e5f6a7b8c9d0e1f2a3b4c</p>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-2">合同签署完成！</h4>
+                    <p className="text-gray-500 mb-2">合同已上链存证，具有法律效力</p>
+                    <p className="text-sm text-gray-400 mb-6">存证哈希: 0x7f8a9b2c3d4e5f6a7b8c9d0e1f2a3b4c</p>
                     <Button 
                       variant="outline"
-                      className="rounded-full bg-white/60"
                       onClick={resetDemo}
                     >
                       <RefreshCw className="w-4 h-4 mr-2" />
@@ -221,7 +214,7 @@ export default function DemoContract() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </PaperPanel>
+            </div>
           </motion.div>
 
           {/* Right Content */}
@@ -229,35 +222,32 @@ export default function DemoContract() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6 }}
             className="order-1 lg:order-2"
           >
-            <EditorialSectionHeader
-              label="DEMO / 互动演示"
-              title={
-                <>
-                  电子合同签约：<span className="text-gold-grad">区块链存证</span>
-                </>
-              }
-              desc="从身份认证到电子签名，再到区块链存证，一站式完成。"
-            />
-
-            <p className="mt-6 text-sm leading-[1.85] text-[rgba(20,18,14,0.72)]">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-6">
+              <FileText className="w-4 h-4" />
+              互动演示
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              电子合同签约
+            </h2>
+            <p className="text-gray-600 mb-8 leading-relaxed">
               全流程线上化签约，采用区块链存证技术，确保合同具有法律效力。
               从身份认证到电子签名，再到区块链存证，一站式完成。
             </p>
             
-            <div className="mt-6 space-y-3 border-t border-[rgba(20,18,14,0.12)]">
+            <div className="space-y-4">
               {[
                 { icon: Shield, text: '区块链存证，永久可追溯' },
                 { icon: Fingerprint, text: '生物识别签名，安全可靠' },
                 { icon: Lock, text: '符合电子签名法，具有法律效力' },
               ].map((item, index) => (
-                <div key={index} className="flex items-center gap-3 py-3 border-b border-[rgba(20,18,14,0.08)]">
-                  <div className="w-10 h-10 bg-white/65 border border-[rgba(20,18,14,0.10)] rounded-lg flex items-center justify-center">
-                    <item.icon className="w-5 h-5 text-[rgba(20,18,14,0.72)]" />
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-blue-600" />
                   </div>
-                  <span className="text-[rgba(20,18,14,0.84)]">{item.text}</span>
+                  <span className="text-gray-700">{item.text}</span>
                 </div>
               ))}
             </div>

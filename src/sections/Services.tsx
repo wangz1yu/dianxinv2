@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Wallet, Shield, Users, ArrowRight } from 'lucide-react';
+import { Wallet, Shield, Users, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { assetUrl } from '@/lib/assets';
-import { EditorialSectionHeader } from '@/components/editorial/SectionHeader';
-import { PaperPanel } from '@/components/editorial/PaperPanel';
-import { EditorialList } from '@/components/editorial/EditorialList';
 
 const services = [
   {
@@ -45,117 +42,126 @@ export default function Services() {
   const [activeService, setActiveService] = useState(0);
 
   return (
-    <section className="py-24">
+    <section className="py-24 bg-[hsl(var(--background))]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <EditorialSectionHeader
-            label="SERVICES / 产品服务"
-            title={
-              <>
-                目录式呈现：<span className="text-gold-grad">少卡片</span>，多秩序
-              </>
-            }
-            desc="保留原有切换交互，但把呈现方式改成画册版心：更克制、更像白皮书摘要。"
-          />
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mb-4">
+            推动<span className="text-gold-grad">智能</span>用工
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            拥有超过8年的行业经验，点薪云为现代企业量身定制的新一代灵活用工解决方案
+          </p>
         </motion.div>
 
-        <div className="mt-8 grid lg:grid-cols-12 gap-8">
-          {/* Left Menu (keep tab logic) */}
-          <div className="lg:col-span-5">
-            <div className="border-t border-[rgba(20,18,14,0.12)]">
-              {services.map((service, index) => {
-                const isActive = activeService === index;
-                return (
-                  <motion.button
-                    key={service.id}
-                    onClick={() => setActiveService(index)}
-                    initial={{ opacity: 0, x: -14 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative w-full text-left py-4"
-                  >
-                    <div className="flex items-baseline justify-between gap-4 border-b border-[rgba(20,18,14,0.12)] pb-4">
-                      <div className="flex items-baseline gap-3">
-                        <span className="text-xs tracking-[0.18em] text-[rgba(20,18,14,0.55)]">
-                          {(index + 1).toString().padStart(2, '0')}
-                        </span>
-                        <span
-                          className={`font-display text-lg tracking-[-0.01em] ${
-                            isActive ? 'text-[hsl(var(--ink))]' : 'text-[rgba(20,18,14,0.86)]'
-                          }`}
-                        >
-                          {service.title}
-                        </span>
-                      </div>
-                      <span className="text-xs tracking-[0.16em] text-[rgba(20,18,14,0.55)]">
-                        {service.subtitle}
-                      </span>
+        <div className="grid lg:grid-cols-12 gap-8">
+          {/* Left Tab Menu */}
+          <div className="lg:col-span-4 space-y-3">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              const isActive = activeService === index;
+              
+              return (
+                <motion.button
+                  key={service.id}
+                  onClick={() => setActiveService(index)}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className={`w-full text-left p-5 rounded-2xl transition-all duration-300 ${
+                    isActive 
+                      ? 'bg-[hsl(var(--card))] shadow-[0_18px_60px_rgba(0,0,0,0.55)] border-l-4 border-[hsl(var(--primary))]' 
+                      : 'bg-[hsl(var(--card))]/55 hover:bg-[hsl(var(--card))] hover:shadow-[0_18px_50px_rgba(0,0,0,0.45)] border border-white/10'
+                  }`}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                      isActive 
+                        ? 'bg-gradient-to-br ' + service.color + ' text-white' 
+                        : 'bg-white/5 text-white/70 border border-white/10'
+                    }`}>
+                      <Icon className="w-6 h-6" />
                     </div>
-                    {isActive ? (
-                      <span className="absolute left-0 -bottom-px h-[3px] w-24 bg-gold-grad" />
-                    ) : null}
-                  </motion.button>
-                );
-              })}
-            </div>
+                    <div>
+                      <h3 className={`font-semibold text-lg ${
+                        isActive ? 'text-foreground' : 'text-foreground/80'
+                      }`}>
+                        {service.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">{service.subtitle}</p>
+                    </div>
+                  </div>
+                </motion.button>
+              );
+            })}
           </div>
 
-          {/* Right Panel */}
-          <div className="lg:col-span-7">
+          {/* Right Content Card */}
+          <div className="lg:col-span-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeService}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -14 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="bg-[hsl(var(--card))] rounded-3xl border border-white/10 shadow-[0_22px_80px_rgba(0,0,0,0.6)] overflow-hidden"
               >
-                <PaperPanel className="p-6 sm:p-7">
-                  <div className="text-xs tracking-[0.22em] uppercase text-[rgba(20,18,14,0.55)]">
-                    {services[activeService].id.toUpperCase()} / {services[activeService].subtitle}
+                <div className="p-8">
+                  {/* Card Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${services[activeService].color} flex items-center justify-center`}>
+                        {(() => {
+                          const Icon = services[activeService].icon;
+                          return <Icon className="w-5 h-5 text-white" />;
+                        })()}
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground">
+                        {services[activeService].title}
+                      </h3>
+                    </div>
+                    <Link to={services[activeService].href}>
+                      <Button variant="outline" className="rounded-full group">
+                        查看更多
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
-                  <h3 className="mt-2 font-display text-[1.4rem] tracking-[-0.02em] text-[hsl(var(--ink))]">
-                    {services[activeService].title}
-                  </h3>
 
-                  <div className="mt-4 overflow-hidden rounded-[14px] border border-[rgba(20,18,14,0.10)] bg-white/60">
-                    <img
+                  {/* Service Image */}
+                  <div className="relative rounded-2xl overflow-hidden mb-6 h-48">
+                    <img 
                       src={assetUrl(`images/service-${services[activeService].id}.jpg`)}
                       alt={services[activeService].title}
-                      className="h-44 w-full object-cover"
-                      loading="lazy"
+                      className="w-full h-full object-cover"
                     />
                   </div>
 
-                  <p className="mt-4 text-sm leading-[1.75] text-[rgba(20,18,14,0.72)]">
+                  {/* Description */}
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
                     {services[activeService].description}
                   </p>
 
-                  <EditorialList
-                    items={services[activeService].features.map((f) => (
-                      <span key={f}>{f}</span>
+                  {/* Features */}
+                  <div className="grid grid-cols-2 gap-3">
+                    {services[activeService].features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <div className="w-5 h-5 rounded-full bg-[rgba(251,193,106,0.14)] border border-[rgba(251,193,106,0.24)] flex items-center justify-center">
+                          <Check className="w-3 h-3 text-[rgba(251,193,106,0.95)]" />
+                        </div>
+                        <span className="text-sm text-foreground/85">{feature}</span>
+                      </div>
                     ))}
-                  />
-
-                  <div className="mt-5 flex flex-wrap items-center gap-3">
-                    <Link to={services[activeService].href}>
-                      <Button className="rounded-full px-5">
-                        查看更多 <ArrowRight className="ml-2 size-4" />
-                      </Button>
-                    </Link>
-                    <Link to="/about/contact">
-                      <Button variant="outline" className="rounded-full px-5 bg-white/60">
-                        预约演示
-                      </Button>
-                    </Link>
                   </div>
-                </PaperPanel>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
