@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>点薪云 v2 视觉 Mockups（深色奢简 + 金色主题）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root{
+        --ink-950:#0b0d12;
+        --ink-900:#0f1420;
+        --ink-850:#121a28;
+        --stroke:rgba(255,255,255,.10);
+        --stroke-strong:rgba(255,255,255,.18);
+        --text:rgba(255,255,255,.92);
+        --muted:rgba(255,255,255,.70);
+        --dim:rgba(255,255,255,.55);
+        --gold1:#fbc16a;
+        --gold2:#fbc779;
+        --gold-grad:linear-gradient(90deg,var(--gold1) 0%,var(--gold2) 55%,var(--gold1) 100%);
+        --max:1120px;
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        background:
+          radial-gradient(900px 520px at 18% 8%, rgba(251,193,106,.13), transparent 60%),
+          radial-gradient(900px 650px at 72% 12%, rgba(255,255,255,.07), transparent 62%),
+          radial-gradient(1200px 800px at 50% 115%, rgba(0,0,0,.70), transparent 60%),
+          var(--ink-950);
+        color:var(--text);
+        font-family:"IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+        letter-spacing:.01em;
+      }
+      .wrap{max-width:var(--max); margin:0 auto; padding:36px 18px 70px}
+      .top{
+        display:flex; gap:14px; align-items:flex-end; justify-content:space-between;
+        border-bottom:1px solid var(--stroke); padding-bottom:14px; margin-bottom:22px;
+      }
+      h1{
+        margin:0; font-family:"Noto Serif SC", ui-serif, serif;
+        font-weight:700; letter-spacing:-.02em; font-size:28px; line-height:1.05;
+      }
+      .subtitle{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.55; max-width:64ch}
+      .meta{color:var(--dim); font-size:12px}
+      .meta b{color:var(--text)}
+
+      .nav{
+        position:sticky; top:0; z-index:2;
+        padding:14px 0 12px;
+        backdrop-filter: blur(12px);
+        background: linear-gradient(180deg, rgba(11,13,18,.86), rgba(11,13,18,.62));
+        border-bottom:1px solid rgba(255,255,255,.06);
+      }
+      .nav-inner{max-width:var(--max); margin:0 auto; padding:0 18px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+      .brand{display:flex; align-items:center; gap:10px}
+      .mark{width:10px; height:10px; border-radius:50%; background:var(--gold1); box-shadow:0 0 0 7px rgba(251,193,106,.10)}
+      .brand-name{font-family:"Noto Serif SC", ui-serif, serif; font-weight:700; letter-spacing:-.02em}
+      .links{display:flex; gap:18px; color:var(--muted); font-size:13px}
+      .links span{position:relative; padding:6px 0}
+      .links span::after{
+        content:""; position:absolute; left:0; right:0; bottom:2px; height:1px;
+        background:rgba(251,193,106,.55);
+        transform:scaleX(0); transform-origin:left; transition:transform .28s ease;
+      }
+      .links span:hover{color:var(--text)}
+      .links span:hover::after{transform:scaleX(1)}
+
+      .btn{
+        border-radius:999px; padding:10px 14px; font-size:12px; border:1px solid var(--stroke-strong);
+        color:var(--text); background:rgba(255,255,255,.04);
+      }
+      .btn.primary{border-color:rgba(251,193,106,.55); background:var(--gold-grad); color:#1a1206; font-weight:650}
+      .btn.primary:hover{filter:brightness(1.05)}
+      .btn:hover{background:rgba(255,255,255,.06)}
+
+      .section{padding:52px 0; border-bottom:1px solid rgba(255,255,255,.06)}
+      .label{
+        font-size:11px; letter-spacing:.24em; color:var(--dim);
+        text-transform:uppercase;
+      }
+      .h2{
+        margin-top:10px;
+        font-family:"Noto Serif SC", ui-serif, serif;
+        font-weight:700; letter-spacing:-.02em;
+        font-size:30px; line-height:1.06;
+      }
+      .divider{
+        margin-top:14px; height:1px; width:72px;
+        background: linear-gradient(90deg, rgba(251,193,106,.72), rgba(255,255,255,.08));
+      }
+      .grid{
+        margin-top:18px; display:grid; grid-template-columns: 1.25fr .75fr; gap:18px;
+      }
+      @media (max-width: 980px){ .grid{grid-template-columns:1fr} .links{display:none} }
+      .panel{
+        border-radius:16px;
+        border:1px solid rgba(255,255,255,.10);
+        background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+        box-shadow: 0 30px 80px rgba(0,0,0,.45);
+        overflow:hidden;
+      }
+      .panel .phead{padding:14px 14px 12px; border-bottom:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:12px}
+      .panel .pbody{padding:14px}
+      .kpis{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+      .kpi{border:1px solid rgba(255,255,255,.08); border-radius:14px; background:rgba(0,0,0,.20); padding:12px 12px 14px}
+      .kpi .k{font-family:"Noto Serif SC", ui-serif, serif; font-weight:700; font-size:18px; color:var(--gold1)}
+      .kpi .v{margin-top:4px; font-size:12px; color:var(--dim)}
+      .list{display:flex; flex-direction:column; gap:10px}
+      .row{
+        display:flex; align-items:center; justify-content:space-between; gap:12px;
+        padding:12px 12px; border-radius:14px;
+        border:1px solid rgba(255,255,255,.08); background:rgba(0,0,0,.18);
+      }
+      .row b{font-weight:600}
+      .row small{color:var(--dim)}
+      .tag{
+        font-size:11px; padding:6px 10px; border-radius:999px;
+        border:1px solid rgba(251,193,106,.35);
+        color:rgba(251,193,106,.95);
+        background:rgba(251,193,106,.08);
+        letter-spacing:.14em;
+      }
+      .copy{color:var(--muted); font-size:14px; line-height:1.75}
+      .copy strong{color:var(--text)}
+
+      .pagehead{
+        margin-top:24px;
+        padding:22px 18px;
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:18px;
+        background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.10));
+      }
+      .crumb{color:var(--dim); font-size:12px}
+      .ph-title{margin-top:10px; font-family:"Noto Serif SC", ui-serif, serif; font-weight:700; font-size:34px; letter-spacing:-.02em}
+      .ph-sub{margin-top:8px; color:var(--muted); font-size:13px; line-height:1.55; max-width:70ch}
+      .ph-actions{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
+
+      .twocol{
+        margin-top:18px; display:grid; grid-template-columns: 0.9fr 1.1fr; gap:18px;
+      }
+      @media (max-width: 980px){ .twocol{grid-template-columns:1fr} }
+      .sidenav{
+        border-radius:16px; border:1px solid rgba(255,255,255,.08);
+        background: rgba(255,255,255,.03);
+        padding:12px;
+      }
+      .sidenav a{
+        display:flex; align-items:center; justify-content:space-between;
+        padding:10px 10px; border-radius:12px;
+        color:var(--muted); text-decoration:none; font-size:13px;
+        border:1px solid transparent;
+      }
+      .sidenav a.active{
+        color:var(--text);
+        border-color:rgba(251,193,106,.25);
+        background: rgba(251,193,106,.08);
+      }
+      .sidenav a:hover{background: rgba(255,255,255,.04); color:var(--text)}
+
+      .foot{
+        margin-top:30px; color:var(--dim); font-size:12px;
+        display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+        padding-top:14px; border-top:1px solid rgba(255,255,255,.06);
+      }
+      .foot strong{color:var(--muted)}
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="mark"></div>
+          <div class="brand-name">点薪云</div>
+        </div>
+        <div class="links">
+          <span>产品服务</span>
+          <span>解决方案</span>
+          <span>客户案例</span>
+          <span>合规与安全</span>
+          <span>关于我们</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="btn">登录</button>
+          <button class="btn primary">预约演示</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="top">
+        <div>
+          <h1>v2 视觉 Mockups</h1>
+          <p class="subtitle">用于确认：全站统一的深色奢简基调、金色高光用法、内页骨架与 section 模板（无需任何交互）。</p>
+        </div>
+        <div class="meta">
+          Accent：<b>#fbc16a</b> / <b>#fbc779</b><br />
+          Base：Ink Dark + Hairline Dividers
+        </div>
+      </div>
+
+      <!-- HERO (VIDEO + ORIGINAL COPY PRESERVED) -->
+      <div class="section" style="padding-top:26px">
+        <div class="label">HERO / 视频 + 原文案保留（方案 A）</div>
+        <div class="h2">灵活用工 · 智领未来</div>
+        <div class="divider"></div>
+        <div class="grid">
+          <div class="copy">
+            <strong>保留：</strong>视频背景（hero.mp4）+ 原文案结构 + 两个 CTA。<br />
+            <strong>改变：</strong>把“蓝色科技感”统一成“深色奢简 + 金色主题”，提升权威感与品牌气质。<br /><br />
+            徽标文案：<span style="color:var(--gold1)">智能用工新时代</span><br />
+            标题：灵活用工 / <span style="background:var(--gold-grad); -webkit-background-clip:text; background-clip:text; color:transparent">智领未来</span><br />
+            描述：为企业提供一站式灵活用工解决方案，从用工匹配、智能结算到保险保障，助力企业降本增效，让用工更简单。
+            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+              <button class="btn primary">下载解决方案</button>
+              <button class="btn">观看演示</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="phead">视频背景（示意）</div>
+            <div class="pbody">
+              <div
+                style="
+                  border-radius:14px;
+                  border:1px solid rgba(255,255,255,.10);
+                  overflow:hidden;
+                  background:
+                    radial-gradient(800px 300px at 30% 20%, rgba(251,193,106,.18), transparent 55%),
+                    linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.22)),
+                    rgba(255,255,255,.04);
+                  height:210px;
+                  display:flex;
+                  align-items:flex-end;
+                  padding:14px;
+                "
+              >
+                <div style="font-size:12px; color:rgba(255,255,255,.72)">
+                  视频将全屏铺底 + 深色遮罩（增强可读性）<br />
+                  粒子/光点可保留，但统一成金色系、降低密度
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO / SECTION TEMPLATE -->
+      <div class="section">
+        <div class="label">COMPLIANCE / 风控体系</div>
+        <div class="h2">合规，是系统能力；不是一句口号。</div>
+        <div class="divider"></div>
+        <div class="grid">
+          <div class="copy">
+            把“结算、保险、招聘、合同、凭证、风控”写进同一条链路里：每一笔发薪都有来源、依据与审计线索。
+            <br /><br />
+            <strong>设计表达：</strong>用更少的色彩、更清晰的版式秩序与分隔线，让权威感来自排版与节奏，而不是组件堆叠。
+          </div>
+          <div class="panel">
+            <div class="phead">关键指标（示意）</div>
+            <div class="pbody">
+              <div class="kpis">
+                <div class="kpi"><div class="k">T+0</div><div class="v">发薪链路</div></div>
+                <div class="kpi"><div class="k">可审计</div><div class="v">凭证归档</div></div>
+                <div class="kpi"><div class="k">多维风控</div><div class="v">规则引擎</div></div>
+              </div>
+              <div style="margin-top:12px" class="list">
+                <div class="row"><b>合同/发票/凭证</b><small>自动归档</small></div>
+                <div class="row"><b>用工关系识别</b><small>风险预警</small></div>
+                <div class="row"><b>资金路径可追溯</b><small>审计友好</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INNER PAGE TEMPLATE -->
+      <div class="section">
+        <div class="label">SERVICES / 产品服务</div>
+        <div class="h2">内页模板：目录式列表 + 右侧详情面板</div>
+        <div class="divider"></div>
+
+        <div class="pagehead">
+          <div class="crumb">首页 / 产品服务 / 灵工结算</div>
+          <div class="ph-title">灵工结算</div>
+          <div class="ph-sub">合规资金路径、税务处理与凭证归档一体化，让“发薪”成为可控的财务流程。</div>
+          <div class="ph-actions">
+            <button class="btn primary">获取报价</button>
+            <button class="btn">下载方案</button>
+            <span class="tag">合规 / 风控</span>
+          </div>
+        </div>
+
+        <div class="twocol">
+          <div class="sidenav">
+            <a class="active" href="javascript:void(0)">灵工结算 <span style="opacity:.5">↗</span></a>
+            <a href="javascript:void(0)">日结保险 <span style="opacity:.5">↗</span></a>
+            <a href="javascript:void(0)">用工招聘 <span style="opacity:.5">↗</span></a>
+            <a href="javascript:void(0)">合规与安全中心 <span style="opacity:.5">↗</span></a>
+          </div>
+          <div class="panel">
+            <div class="phead">详情面板（示意）</div>
+            <div class="pbody">
+              <div class="copy" style="font-size:13px">
+                <strong>适用场景：</strong>外卖配送 / 网约车 / 家政 / 电商物流…<br />
+                <strong>核心能力：</strong>批量结算、T+0、风险校验、税务合规、凭证归档。<br /><br />
+                <strong>交互原则：</strong>少卡片、多分隔；信息像目录一样可扫描，点击左侧即切换右侧详情。
+              </div>
+              <div style="margin-top:14px" class="kpis">
+                <div class="kpi"><div class="k">分账</div><div class="v">多资金路径</div></div>
+                <div class="kpi"><div class="k">合规</div><div class="v">税务处理</div></div>
+                <div class="kpi"><div class="k">归档</div><div class="v">凭证齐全</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div><strong>确认点：</strong>整体气质、金色用量、分隔线与排版秩序、内页“目录式”布局是否符合预期。</div>
+        <div>Mockups / 2026-04-09</div>
+      </div>
+    </div>
+  </body>
+</html>

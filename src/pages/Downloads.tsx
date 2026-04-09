@@ -1,0 +1,77 @@
+import { useEffect, useState } from 'react';
+import { Download } from 'lucide-react';
+import Navbar from '@/sections/Navbar';
+import Footer from '@/sections/Footer';
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import { trackEvent } from '@/lib/analytics';
+
+const resources: { name: string; type: string; url?: string }[] = [
+  { name: '社会化用工方案白皮书', type: 'PDF', url: '' },
+  { name: '结算与报税实施清单模板', type: 'XLS', url: '' },
+  { name: '平台能力演示资料', type: 'PDF', url: '' },
+  { name: '合规证照汇总包', type: 'ZIP', url: '' },
+];
+
+export default function Downloads() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  useEffect(() => window.scrollTo(0, 0), []);
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Navbar />
+      <section className="pt-32 pb-16 bg-gray-100">
+        <div className="max-w-6xl mx-auto px-4">
+          <h1 className="text-4xl font-bold text-gray-900">下载中心</h1>
+          <p className="text-gray-600 mt-3">统一管理白皮书、模板和演示资料，支持销售与方案评估前置。</p>
+        </div>
+      </section>
+      <section className="py-16 max-w-6xl mx-auto px-4 space-y-4">
+        {resources.map((resource) => (
+          <div key={resource.name} className="rounded-xl border p-4 flex justify-between items-center">
+            <div>
+              <p className="font-medium">{resource.name}</p>
+              <p className="text-xs text-gray-500">文件类型：{resource.type}</p>
+            </div>
+            <Button
+              variant="outline"
+              onClick={() => {
+                trackEvent('download_resource', { resource: resource.name });
+                if (!resource.url) {
+                  // no link defined
+                  setDialogOpen(true);
+                } else {
+                  // open the actual link
+                  window.open(resource.url, '_blank');
+                }
+              }}
+            >
+              <Download className="w-4 h-4 mr-2" />下载
+            </Button>
+          </div>
+        ))}
+      </section>
+      {/* dialog shown when resource url missing */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>提示</DialogTitle>
+            <DialogDescription>暂未添加内容，请联系运营人员获取</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => setDialogOpen(false)}>知道了</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Footer />
+    </div>
+  );
+}
