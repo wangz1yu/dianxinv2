@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>点薪云 v2 首页（除 Hero）画册编辑部 Mockup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #fbf7ef;
+        --paper-2: #f7f1e7;
+        --ink: #14120e;
+        --muted: rgba(20, 18, 14, 0.72);
+        --dim: rgba(20, 18, 14, 0.55);
+        --stroke: rgba(20, 18, 14, 0.12);
+        --stroke-soft: rgba(20, 18, 14, 0.08);
+        --gold1: #fbc16a;
+        --gold2: #fbc779;
+        --gold-grad: linear-gradient(90deg, #fbc16a 0%, #fbc779 55%, #fbc16a 100%);
+        --max: 1120px;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+        background:
+          radial-gradient(900px 520px at 18% 6%, rgba(251, 193, 106, 0.18), transparent 62%),
+          radial-gradient(900px 680px at 75% 10%, rgba(20, 18, 14, 0.07), transparent 60%),
+          linear-gradient(180deg, var(--paper), var(--paper-2));
+      }
+      .grain::before{
+        content:"";
+        position:fixed; inset:0;
+        pointer-events:none;
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.26'/%3E%3C/svg%3E");
+        opacity:.06;
+        mix-blend-mode:multiply;
+      }
+      .wrap { max-width: var(--max); margin: 0 auto; padding: 44px 18px 88px; }
+      .topline {
+        display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+        border-bottom: 1px solid var(--stroke);
+        padding-bottom: 14px;
+        margin-bottom: 20px;
+      }
+      h1{
+        margin:0;
+        font-family:"Noto Serif SC", ui-serif, serif;
+        letter-spacing:-.02em;
+        font-weight:700;
+        font-size: 26px;
+        line-height:1.05;
+      }
+      .subtitle{margin-top:8px; color:var(--muted); font-size:13px; line-height:1.55; max-width:72ch}
+      .chip{
+        font-size: 12px;
+        border:1px solid rgba(251,193,106,.55);
+        background: rgba(251,193,106,.10);
+        padding: 7px 10px;
+        border-radius: 999px;
+        color: rgba(20,18,14,.86);
+        letter-spacing:.08em;
+        white-space:nowrap;
+      }
+
+      .section{ padding: 78px 0; border-bottom: 1px solid var(--stroke-soft); }
+      .label{ font-size: 11px; letter-spacing:.26em; text-transform:uppercase; color: var(--dim); }
+      .h2{
+        margin-top: 10px;
+        font-family:"Noto Serif SC", ui-serif, serif;
+        letter-spacing:-.02em;
+        font-weight:700;
+        font-size: 34px;
+        line-height:1.06;
+      }
+      .h2 .gold{
+        background: var(--gold-grad);
+        -webkit-background-clip:text;
+        background-clip:text;
+        color: transparent;
+      }
+      .divider{ margin-top: 14px; height:1px; width: 92px; position:relative; background: rgba(20,18,14,.24); }
+      .divider::before{
+        content:""; position:absolute; left:0; top:-1px; width:22px; height:3px;
+        background: var(--gold-grad);
+      }
+      .lede{ margin-top: 16px; color: var(--muted); line-height:1.85; font-size: 14px; max-width: 78ch; }
+
+      /* transition band */
+      .band{
+        border: 1px solid var(--stroke);
+        border-radius: 18px;
+        padding: 18px 18px;
+        background:
+          radial-gradient(680px 180px at 18% 0%, rgba(251,193,106,.16), transparent 55%),
+          rgba(255,255,255,.55);
+        box-shadow: 0 26px 80px rgba(20,18,14,.08);
+      }
+      .band p{ margin:0; font-family:"Noto Serif SC", ui-serif, serif; font-weight:700; letter-spacing:-.01em; }
+      .band small{ display:block; margin-top:8px; color:var(--muted); font-family:"IBM Plex Sans"; letter-spacing:.02em; }
+
+      /* services */
+      .services-grid{ margin-top: 26px; display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 18px; }
+      @media (max-width: 980px){ .services-grid{ grid-template-columns: 1fr; } }
+      .menu{
+        border-top: 1px solid var(--stroke);
+      }
+      .menu a{
+        display:flex; justify-content:space-between; align-items:baseline;
+        text-decoration:none;
+        color: var(--ink);
+        padding: 14px 2px;
+        border-bottom: 1px solid var(--stroke);
+      }
+      .menu a b{ font-family:"Noto Serif SC"; font-weight:700; letter-spacing:-.01em; }
+      .menu a span{ color: var(--dim); font-size:12px; letter-spacing:.16em; }
+      .menu a:hover b{ background: var(--gold-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+      .menu a.active{ position:relative; }
+      .menu a.active::after{
+        content:""; position:absolute; left:0; bottom:-1px; height:3px; width: 96px; background: var(--gold-grad);
+      }
+      .paper-panel{
+        border: 1px solid var(--stroke);
+        border-radius: 18px;
+        background: rgba(255,255,255,.62);
+        padding: 18px 18px 18px;
+        box-shadow: 0 26px 80px rgba(20,18,14,.10);
+      }
+      .paper-panel .kicker{ font-size: 12px; color: var(--dim); letter-spacing:.22em; text-transform:uppercase; }
+      .paper-panel h3{ margin: 10px 0 0; font-family:"Noto Serif SC"; letter-spacing:-.02em; font-size: 22px; }
+      .paper-panel p{ margin: 10px 0 0; color: var(--muted); line-height:1.75; font-size: 13px; }
+      .feat{
+        margin-top: 14px;
+        border-top: 1px solid var(--stroke-soft);
+      }
+      .feat div{
+        display:flex; gap:10px; align-items:center;
+        padding: 12px 2px;
+        border-bottom: 1px solid var(--stroke-soft);
+        color: rgba(20,18,14,.82);
+        font-size: 13px;
+      }
+      .dot{
+        width:8px; height:8px; border-radius:50%;
+        background: var(--gold1);
+        box-shadow: 0 0 0 6px rgba(251,193,106,.12);
+        flex:0 0 auto;
+      }
+      .actions{ margin-top: 16px; display:flex; gap:10px; flex-wrap:wrap; }
+      .btn{
+        border-radius: 999px;
+        padding: 10px 14px;
+        border: 1px solid rgba(20,18,14,.18);
+        background: rgba(255,255,255,.65);
+        color: rgba(20,18,14,.92);
+        font-size: 12px;
+      }
+      .btn.primary{
+        border-color: rgba(251,193,106,.55);
+        background: var(--gold-grad);
+        color: #1a1206;
+        font-weight: 650;
+      }
+
+      /* pricing list */
+      .pricing{ margin-top: 26px; border-top:1px solid var(--stroke); }
+      .p-row{
+        display:grid; grid-template-columns: 1.4fr .6fr .6fr;
+        gap: 12px;
+        padding: 16px 2px;
+        border-bottom:1px solid var(--stroke);
+        align-items:center;
+      }
+      @media (max-width: 980px){ .p-row{ grid-template-columns: 1fr; } }
+      .p-row b{ font-family:"Noto Serif SC"; font-weight:700; }
+      .p-row small{ display:block; margin-top:6px; color: var(--muted); line-height:1.55; }
+      .tag{ display:inline-flex; align-items:center; gap:8px; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color: rgba(20,18,14,.76); }
+      .tag i{ width: 8px; height:8px; border-radius:50%; background: var(--gold1); box-shadow:0 0 0 6px rgba(251,193,106,.12); display:inline-block; }
+      .recommend{ border: 1px solid rgba(251,193,106,.45); padding: 8px 10px; border-radius: 999px; background: rgba(251,193,106,.10); font-size: 12px; }
+
+      /* clients gallery strip */
+      .gallery{
+        margin-top: 26px;
+        border-top:1px solid var(--stroke);
+        border-bottom:1px solid var(--stroke);
+        padding: 18px 0;
+        display:flex; gap:12px; flex-wrap:wrap;
+      }
+      .logo{
+        width: 86px; height: 56px;
+        border-radius: 12px;
+        border: 1px solid rgba(20,18,14,.10);
+        background: #fff;
+        display:flex; align-items:center; justify-content:center;
+        color: rgba(20,18,14,.55);
+        font-size: 12px;
+      }
+
+      /* qual split */
+      .qual{ margin-top: 26px; display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      @media (max-width: 980px){ .qual{ grid-template-columns:1fr; } }
+      .qual .list{ border-top:1px solid var(--stroke); }
+      .qual .list div{
+        padding: 14px 2px;
+        border-bottom:1px solid var(--stroke);
+        display:flex; justify-content:space-between; gap:12px;
+      }
+      .qual .list b{ font-family:"Noto Serif SC"; }
+      .qual .preview{
+        border:1px solid var(--stroke);
+        border-radius:18px;
+        background: rgba(255,255,255,.62);
+        padding: 18px;
+        box-shadow: 0 26px 80px rgba(20,18,14,.10);
+      }
+      .placeholder{
+        height: 168px;
+        border-radius: 14px;
+        border: 1px dashed rgba(20,18,14,.20);
+        background: rgba(255,255,255,.55);
+        display:flex; align-items:center; justify-content:center;
+        color: rgba(20,18,14,.45);
+      }
+
+      /* demo narrative */
+      .demo{
+        margin-top: 26px;
+        display:grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 18px;
+        align-items:start;
+      }
+      @media (max-width: 980px){ .demo{ grid-template-columns:1fr; } }
+      .kpi{
+        margin-top: 14px;
+        border-top: 1px solid var(--stroke);
+      }
+      .kpi div{
+        display:flex; justify-content:space-between; gap:12px;
+        padding: 12px 2px;
+        border-bottom:1px solid var(--stroke);
+        color: rgba(20,18,14,.84);
+      }
+      .kpi div span{ background: var(--gold-grad); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:700; }
+
+      /* faq */
+      .faq{ margin-top: 26px; border-top:1px solid var(--stroke); }
+      .q{
+        display:flex; justify-content:space-between; gap:12px;
+        padding: 16px 2px;
+        border-bottom:1px solid var(--stroke);
+      }
+      .q b{ font-family:"Noto Serif SC"; }
+      .q small{ color: var(--dim); }
+
+      /* footer */
+      .footer{
+        margin-top: 30px;
+        border-top:1px solid var(--stroke);
+        padding-top: 18px;
+        display:grid;
+        grid-template-columns: 1.1fr .9fr .9fr;
+        gap: 18px;
+        color: rgba(20,18,14,.78);
+        font-size: 13px;
+      }
+      @media (max-width: 980px){ .footer{ grid-template-columns:1fr; } }
+      .footer h4{ margin:0 0 10px; font-family:"Noto Serif SC"; font-size: 15px; }
+      .footer a{ color: rgba(20,18,14,.72); text-decoration:none; display:block; padding: 6px 0; border-bottom:1px solid rgba(20,18,14,.06); }
+      .footer a:hover{ color: rgba(20,18,14,.92); }
+      .fineprint{ margin-top: 14px; color: rgba(20,18,14,.55); font-size: 12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+    </style>
+  </head>
+  <body class="grain">
+    <div class="wrap">
+      <div class="topline">
+        <div>
+          <h1>首页（除 Hero）画册编辑部 Mockup</h1>
+          <div class="subtitle">
+            说明：此页只展示“版式与视觉语言”，不展示交互；实际落地时会保留你现有的 tab/折叠/Demo 交互与动效。
+          </div>
+        </div>
+        <div class="chip">Brand Gold · #fbc16a / #fbc779</div>
+      </div>
+
+      <!-- Transition Band -->
+      <div class="section" style="padding-top:42px">
+        <div class="label">TRANSITION / 过渡带</div>
+        <div class="h2">从视频进入画册：<span class="gold">合规必须可追溯</span></div>
+        <div class="divider"></div>
+        <div class="lede">
+          这段用于衔接 Hero（蓝色视频）与后续暖白纸感：让用户滚动到第二屏时自然“进入画册”。
+        </div>
+        <div style="margin-top:18px" class="band">
+          <p>把结算、合同、凭证与风控写进同一条链路里。</p>
+          <small>每一笔发薪，都能被解释；每一次用工，都有证据。</small>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="section">
+        <div class="label">SERVICES / 产品服务</div>
+        <div class="h2">目录式呈现：<span class="gold">少卡片</span>，多秩序</div>
+        <div class="divider"></div>
+        <div class="services-grid">
+          <div class="menu">
+            <a class="active" href="javascript:void(0)"><b>01 灵工结算</b><span>T+0</span></a>
+            <a href="javascript:void(0)"><b>02 日结保险</b><span>次日生效</span></a>
+            <a href="javascript:void(0)"><b>03 用工招聘</b><span>人才库</span></a>
+          </div>
+          <div class="paper-panel">
+            <div class="kicker">SETTLEMENT / 合规结算</div>
+            <h3>把“发薪”做成可审计的财务流程</h3>
+            <p>保留原有切换交互，但右侧内容变成画册式版心：更克制、更像白皮书摘要。</p>
+            <div class="feat">
+              <div><span class="dot"></span>资金路径清晰：分账与对账自动化</div>
+              <div><span class="dot"></span>税务合规处理：规则固化、流程留痕</div>
+              <div><span class="dot"></span>凭证归档：合同/票据/报表一体化</div>
+              <div><span class="dot"></span>风险校验：异常识别与预警</div>
+            </div>
+            <div class="actions">
+              <button class="btn primary">获取方案</button>
+              <button class="btn">查看更多</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="section">
+        <div class="label">PRICING / 费用概览</div>
+        <div class="h2">对比清单式：<span class="gold">更像报价页</span></div>
+        <div class="divider"></div>
+        <div class="lede">不做 3 张“营销卡片”，改成目录式的方案清单，更符合企业采购阅读习惯。</div>
+        <div class="pricing">
+          <div class="p-row">
+            <div>
+              <div class="tag"><i></i> BASIC</div>
+              <b>灵工结算</b>
+              <small>按实际结算金额计费，适合规模化用工。</small>
+            </div>
+            <div><b class="gold">费用 / 咨询</b><small>透明计费</small></div>
+            <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end">
+              <button class="btn">查看详情</button>
+            </div>
+          </div>
+          <div class="p-row">
+            <div>
+              <div class="tag"><i></i> RECOMMENDED</div>
+              <b>企业套餐</b> <span class="recommend">推荐</span>
+              <small>API 对接、专属服务与高级数据分析。</small>
+            </div>
+            <div><b class="gold">定制 / 报价</b><small>企业级</small></div>
+            <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end">
+              <button class="btn primary">立即咨询</button>
+            </div>
+          </div>
+          <div class="p-row">
+            <div>
+              <div class="tag"><i></i> INSURANCE</div>
+              <b>日结保险</b>
+              <small>按实际工作天数计费，次日生效。</small>
+            </div>
+            <div><b class="gold">费用 / 咨询</b><small>灵活计费</small></div>
+            <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end">
+              <button class="btn">查看详情</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clients -->
+      <div class="section">
+        <div class="label">CLIENTS / 合作名录</div>
+        <div class="h2">画廊带：<span class="gold">干净的品牌露出</span></div>
+        <div class="divider"></div>
+        <div class="lede">保留原无限滚动，但整体容器更像“画廊展示带”。</div>
+        <div class="gallery">
+          <div class="logo">MEITUAN</div>
+          <div class="logo">ELEME</div>
+          <div class="logo">DIDI</div>
+          <div class="logo">JD</div>
+          <div class="logo">SF</div>
+          <div class="logo">HEMA</div>
+          <div class="logo">DADA</div>
+          <div class="logo">CAINIAO</div>
+          <div class="logo">T3</div>
+          <div class="logo">UU</div>
+        </div>
+      </div>
+
+      <!-- Qualifications -->
+      <div class="section">
+        <div class="label">QUALIFICATIONS / 资质展示</div>
+        <div class="h2">目录 + 说明页：<span class="gold">像白皮书附录</span></div>
+        <div class="divider"></div>
+        <div class="qual">
+          <div class="list">
+            <div><b>软件著作权</b><span class="tag"><i></i> CERT</span></div>
+            <div><b>信息系统安全等级保护</b><span class="tag"><i></i> SECURITY</span></div>
+            <div><b>互联网信息服务资质</b><span class="tag"><i></i> LICENSE</span></div>
+          </div>
+          <div class="preview">
+            <div class="kicker">SELECTED / 选中资质</div>
+            <h3>信息系统安全等级保护</h3>
+            <p>右侧是“说明页版心”，下方按钮触发原来的弹窗预览（交互保留）。</p>
+            <div style="margin-top:12px" class="placeholder">证照缩略图区域</div>
+            <div class="actions">
+              <button class="btn">放大预览</button>
+              <button class="btn primary">下载资质合集</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo narrative -->
+      <div class="section">
+        <div class="label">DEMO / 交互演示</div>
+        <div class="h2">三段叙事：<span class="gold">可见的流程</span></div>
+        <div class="divider"></div>
+        <div class="demo">
+          <div>
+            <div class="kicker">01 / SETTLEMENT</div>
+            <h3 style="margin:10px 0 0; font-family:'Noto Serif SC'; letter-spacing:-.02em;">结算链路演示</h3>
+            <p class="lede" style="margin-top:10px">
+              保留现有演示交互，只把外观做成“纸面板 + 分隔线”的画册风格。
+            </p>
+            <div class="kpi">
+              <div><span>T+0</span><b>到帐效率</b></div>
+              <div><span>可追溯</span><b>凭证归档</b></div>
+              <div><span>风控</span><b>异常预警</b></div>
+            </div>
+          </div>
+          <div class="paper-panel">
+            <div class="kicker">INTERACTIVE PANEL</div>
+            <h3>演示面板容器（示意）</h3>
+            <p>这里会承载你现有的 Demo 组件，交互逻辑不变。</p>
+            <div style="margin-top:12px" class="placeholder">原 Demo UI</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="section">
+        <div class="label">FAQ / 常见问题</div>
+        <div class="h2">问答目录：<span class="gold">更像知识页</span></div>
+        <div class="divider"></div>
+        <div class="faq">
+          <div class="q"><b>01 合规如何保障？</b><small>展开</small></div>
+          <div class="q"><b>02 结算周期与对账方式？</b><small>展开</small></div>
+          <div class="q"><b>03 如何对接 API？</b><small>展开</small></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="section" style="border-bottom:none">
+        <div class="label">CTA / 收口页</div>
+        <div class="h2">让合规与增长，<span class="gold">同一条路径</span></div>
+        <div class="divider"></div>
+        <div class="lede">只保留一个主按钮，像画册末页一样“干净收口”。</div>
+        <div class="actions" style="margin-top:18px">
+          <button class="btn primary">预约演示</button>
+          <button class="btn">下载方案</button>
+        </div>
+
+        <div class="footer">
+          <div>
+            <h4>点薪云</h4>
+            <div style="color:var(--muted); line-height:1.7">社会化用工方案服务商。以合规、风控与效率为底层能力。</div>
+          </div>
+          <div>
+            <h4>导航</h4>
+            <a href="javascript:void(0)">产品服务</a>
+            <a href="javascript:void(0)">解决方案</a>
+            <a href="javascript:void(0)">客户案例</a>
+          </div>
+          <div>
+            <h4>联系</h4>
+            <div style="padding:6px 0; border-bottom:1px solid rgba(20,18,14,.06)">17340094007</div>
+            <div style="padding:6px 0; border-bottom:1px solid rgba(20,18,14,.06)">wangziyu@dianxingg.com.cn</div>
+          </div>
+        </div>
+        <div class="fineprint">
+          <div>© 2025 点薪云® 皖ICP备2024034333号</div>
+          <div>Mockup / Warm Paper + Brand Gold</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
