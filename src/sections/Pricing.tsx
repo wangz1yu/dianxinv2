@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Check, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { EditorialSectionHeader } from '@/components/editorial/SectionHeader';
 
 const pricingPlans = [
   {
@@ -54,118 +55,81 @@ const pricingPlans = [
 
 export default function Pricing() {
   return (
-    <section className="py-24 bg-[hsl(var(--background))]">
+    <section className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mb-4">
-            费用概览
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            透明的定价体系，灵活的付费方式，让每一分钱都物有所值
-          </p>
-          <Link to="/about/contact">
-            <Button className="mt-6 rounded-full px-8">
-              立即咨询
-            </Button>
-          </Link>
+          <EditorialSectionHeader
+            label="PRICING / 费用概览"
+            title={
+              <>
+                对比清单式：<span className="text-gold-grad">更像报价页</span>
+              </>
+            }
+            desc="不做三张“营销卡片”，改成目录式方案清单，更符合企业采购阅读习惯。"
+          />
         </motion.div>
 
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="mt-8 border-t border-[rgba(20,18,14,0.12)]">
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative rounded-3xl p-8 ${
-                plan.highlighted 
-                  ? 'bg-[hsl(var(--card))] text-foreground shadow-[0_28px_90px_rgba(0,0,0,0.65)] scale-[1.03] border border-[rgba(251,193,106,0.35)]' 
-                  : 'bg-[hsl(var(--card))] border border-white/10 text-foreground hover:shadow-[0_22px_70px_rgba(0,0,0,0.55)] transition-shadow'
-              }`}
+              transition={{ duration: 0.55, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className="grid gap-4 py-5 border-b border-[rgba(20,18,14,0.12)] lg:grid-cols-[1.45fr_.6fr_.7fr]"
             >
-              {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gold-grad text-[hsl(var(--primary-foreground))] text-sm font-semibold rounded-full shadow-[0_20px_60px_rgba(251,193,106,0.18)]">
-                  推荐方案
-                </div>
-              )}
-
-              {/* Plan Name */}
-              <div className="text-center mb-6">
-                <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
-                  plan.highlighted ? 'bg-[rgba(251,193,106,0.14)] border border-[rgba(251,193,106,0.24)]' : 'bg-white/5 border border-white/10'
-                }`}>
-                  <span className={`text-2xl font-bold ${
-                    plan.highlighted ? 'text-[rgba(251,193,106,0.95)]' : 'text-foreground'
-                  }`}>
-                    {plan.name.charAt(0)}
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-[rgba(20,18,14,0.76)]">
+                    <span className="size-2 rounded-full bg-[hsl(var(--primary))] shadow-[0_0_0_6px_rgba(251,193,106,0.12)]" />
+                    {plan.highlighted ? 'RECOMMENDED' : plan.name.toUpperCase().slice(0, 8)}
                   </span>
-                </div>
-                <h3 className={`text-xl font-bold ${
-                  plan.highlighted ? 'text-foreground' : 'text-foreground'
-                }`}>
-                  {plan.name}
-                </h3>
-              </div>
-
-              {/* Price */}
-              <div className="text-center mb-6">
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className={`text-4xl font-bold ${
-                    plan.highlighted ? 'text-gold-grad' : 'text-gold-grad'
-                  }`}>
-                    {plan.price}
-                  </span>
-                  <span className={plan.highlighted ? 'text-muted-foreground' : 'text-muted-foreground'}>
-                    {plan.unit}
-                  </span>
-                </div>
-                <p className={`text-sm mt-2 ${
-                  plan.highlighted ? 'text-muted-foreground' : 'text-muted-foreground'
-                }`}>
-                  {plan.description}
-                </p>
-              </div>
-
-              {/* Features */}
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                      plan.highlighted
-                        ? 'bg-[rgba(251,193,106,0.14)] border border-[rgba(251,193,106,0.24)]'
-                        : 'bg-white/5 border border-white/10'
-                    }`}>
-                      <Check className={`w-3 h-3 ${
-                        plan.highlighted ? 'text-[rgba(251,193,106,0.95)]' : 'text-[rgba(251,193,106,0.9)]'
-                      }`} />
-                    </div>
-                    <span className={`text-sm ${
-                      plan.highlighted ? 'text-foreground/85' : 'text-foreground/80'
-                    }`}>
-                      {feature}
+                  {plan.highlighted ? (
+                    <span className="rounded-full border border-[rgba(251,193,106,0.45)] bg-[rgba(251,193,106,0.10)] px-3 py-1 text-xs text-[rgba(20,18,14,0.86)]">
+                      推荐
                     </span>
-                  </li>
-                ))}
-              </ul>
+                  ) : null}
+                </div>
+                <div className="mt-2 font-display text-lg tracking-[-0.01em] text-[hsl(var(--ink))]">
+                  {plan.name}
+                </div>
+                <div className="mt-2 text-sm leading-[1.55] text-[rgba(20,18,14,0.72)]">
+                  {plan.description}
+                </div>
+              </div>
 
-              {/* CTA Button */}
-              <Link to="/services" className="block">
-                <Button 
-                  className="w-full rounded-full group"
-                >
-                  {plan.cta}
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <div className="lg:text-right">
+                <div className="font-display text-xl tracking-[-0.01em] text-gold-grad">
+                  {plan.price}
+                </div>
+                <div className="mt-1 text-xs tracking-[0.12em] text-[rgba(20,18,14,0.55)]">
+                  {plan.unit}
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 lg:justify-end">
+                <Link to="/services">
+                  <Button
+                    className={`rounded-full px-5 group ${
+                      plan.highlighted ? 'border border-[rgba(251,193,106,0.35)] shadow-[0_22px_70px_rgba(251,193,106,0.12)]' : ''
+                    }`}
+                  >
+                    {plan.cta}
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link to="/about/contact">
+                  <Button variant="outline" className="rounded-full px-5 bg-white/60">
+                    咨询
+                  </Button>
+                </Link>
+              </div>
             </motion.div>
           ))}
         </div>
