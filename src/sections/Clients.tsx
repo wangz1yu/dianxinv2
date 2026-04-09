@@ -1,22 +1,23 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { assetUrl } from '@/lib/assets';
 
 const clients = [
-  { name: '美团', logo: '/images/logo-meituan.jpg' },
-  { name: '饿了么', logo: '/images/logo-eleme.jpg' },
-  { name: '滴滴', logo: '/images/logo-didi.jpg' },
-  { name: '京东', logo: '/images/logo-jd.jpg' },
-  { name: '顺丰', logo: '/images/logo-shunfeng.jpg' },
-  { name: '盒马', logo: '/images/logo-hema.jpg' },
-  { name: '叮咚买菜', logo: '/images/logo-ddmc.jpg' },
-  { name: '达达', logo: '/images/logo-dada.jpg' },
-  { name: '闪送', logo: '/images/logo-shansong.jpg' },
-  { name: 'UU跑腿', logo: '/images/logo-uu.jpg' },
-  { name: '曹操出行', logo: '/images/logo-caocao.jpg' },
-  { name: 'T3出行', logo: '/images/logo-t3.jpg' },
-  { name: '货拉拉', logo: '/images/logo-huolala.jpg' },
-  { name: '菜鸟', logo: '/images/logo-cainiao.jpg' },
-  { name: '蜂鸟众包', logo: '/images/logo-fengniao.jpg' },
+  { name: '美团', logo: assetUrl('images/logo-meituan.jpg') },
+  { name: '饿了么', logo: assetUrl('images/logo-eleme.jpg') },
+  { name: '滴滴', logo: assetUrl('images/logo-didi.jpg') },
+  { name: '京东', logo: assetUrl('images/logo-jd.jpg') },
+  { name: '顺丰', logo: assetUrl('images/logo-shunfeng.jpg') },
+  { name: '盒马', logo: assetUrl('images/logo-hema.jpg') },
+  { name: '叮咚买菜', logo: assetUrl('images/logo-ddmc.jpg') },
+  { name: '达达', logo: assetUrl('images/logo-dada.jpg') },
+  { name: '闪送', logo: assetUrl('images/logo-shansong.jpg') },
+  { name: 'UU跑腿', logo: assetUrl('images/logo-uu.jpg') },
+  { name: '曹操出行', logo: assetUrl('images/logo-caocao.jpg') },
+  { name: 'T3出行', logo: assetUrl('images/logo-t3.jpg') },
+  { name: '货拉拉', logo: assetUrl('images/logo-huolala.jpg') },
+  { name: '菜鸟', logo: assetUrl('images/logo-cainiao.jpg') },
+  { name: '蜂鸟众包', logo: assetUrl('images/logo-fengniao.jpg') },
 ];
 
 // 复制多份确保无缝循环

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { assetUrl } from '@/lib/assets';
 
 const footerLinks = {
   company: {
@@ -38,7 +39,7 @@ export default function Footer() {
           <div className="col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img 
-                src="/favicon.png" 
+                src={assetUrl('favicon.png')} 
                 alt="点薪云" 
                 className="w-8 h-8 object-contain"
               />

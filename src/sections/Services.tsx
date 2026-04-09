@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Wallet, Shield, Users, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { assetUrl } from '@/lib/assets';
 
 const services = [
   {
@@ -138,7 +139,7 @@ export default function Services() {
                   {/* Service Image */}
                   <div className="relative rounded-2xl overflow-hidden mb-6 h-48">
                     <img 
-                      src={`/images/service-${services[activeService].id}.jpg`}
+                      src={assetUrl(`images/service-${services[activeService].id}.jpg`)}
                       alt={services[activeService].title}
                       className="w-full h-full object-cover"
                     />

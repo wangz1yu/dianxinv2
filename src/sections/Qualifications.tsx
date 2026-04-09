@@ -9,13 +9,14 @@ import {
   DialogClose,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { assetUrl } from '@/lib/assets';
 
 const qualifications = [
   {
     id: 'soft-copyright',
     title: '软件著作权',
-    thumbImage: '/images/qualifications/qualification-1-thumb.svg',
-    fullImage: '/images/qualifications/qualification-1.svg',
+    thumbImage: assetUrl('images/qualifications/qualification-1-thumb.svg'),
+    fullImage: assetUrl('images/qualifications/qualification-1.svg'),
     summary: '公司拥有多项软件著作权，覆盖核心平台模块',
     detail:
       '本公司已取得若干软件著作权，覆盖订单处理、结算报表、对接 API 等核心能力。证书号与详细信息可在此查看。',
@@ -23,8 +24,8 @@ const qualifications = [
   {
     id: 'info-service',
     title: '信息系统安全等级保护',
-    thumbImage: '/images/qualifications/qualification-2-thumb.svg',
-    fullImage: '/images/qualifications/qualification-2.svg',
+    thumbImage: assetUrl('images/qualifications/qualification-2-thumb.svg'),
+    fullImage: assetUrl('images/qualifications/qualification-2.svg'),
     summary: '已备案并具备信息安全等级保护',
     detail:
       '本平台系统具备公安部二级安全等级保护备案。',
@@ -32,8 +33,8 @@ const qualifications = [
   {
     id: 'online-data',
     title: '在线数据处理与交易处理业务、信息服务业务、互联网信息服务资质',
-    thumbImage: '/images/qualifications/qualification-3-thumb.svg',
-    fullImage: '/images/qualifications/qualification-3.svg',
+    thumbImage: assetUrl('images/qualifications/qualification-3-thumb.svg'),
+    fullImage: assetUrl('images/qualifications/qualification-3.svg'),
     summary: '支持在线数据处理与交易处理的系统能力',
     detail:
       '系统支持高并发在线数据处理与交易流程，提供 API 与可视化管理后台，满足企业级使用场景。',

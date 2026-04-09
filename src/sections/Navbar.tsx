@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { assetUrl } from '@/lib/assets';
 
 const navItems = [
   { label: '首页', href: '/' },
@@ -83,7 +84,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img 
-              src="/favicon.png" 
+              src={assetUrl('favicon.png')} 
               alt="点薪云" 
               className="w-8 h-8 object-contain"
             />
