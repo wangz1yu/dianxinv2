@@ -40,6 +40,15 @@
     --font-sans: "IBM Plex Sans", "Noto Sans SC", ui-sans-serif, system-ui,
       -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --font-display: "Noto Serif SC", ui-serif, Georgia, "Times New Roman", serif;
+
+  /* warm paper (homepage editorial sections) */
+  --paper: 38 55% 96%; /* approx #fbf7ef */
+  --paper-2: 38 40% 94%; /* approx #f7f1e7 */
+  --ink: 28 18% 8%; /* approx #14120e */
+  --ink-muted: 28 18% 8% / 0.72;
+  --ink-dim: 28 18% 8% / 0.55;
+  --stroke: 28 18% 8% / 0.12;
+  --stroke-soft: 28 18% 8% / 0.08;
   }
 
   .dark {
@@ -114,6 +123,24 @@ body::after {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* warm paper background helpers (used after Hero) */
+.bg-paper {
+  background:
+    radial-gradient(900px 520px at 18% 6%, rgba(251, 193, 106, 0.18), transparent 62%),
+    radial-gradient(900px 680px at 75% 10%, rgba(20, 18, 14, 0.07), transparent 60%),
+    linear-gradient(180deg, hsl(var(--paper)), hsl(var(--paper-2)));
+}
+
+.paper-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.26'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  mix-blend-mode: multiply;
 }
 
 /* ------------------------------------------------------------
