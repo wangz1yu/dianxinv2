@@ -64,4 +64,15 @@ export const CASES: CaseItem[] = [
     compliance: "留痕覆盖 100%",
     tags: ["services/recruitment", "solutions/logistics"],
   },
+  {
+    id: "housekeeping",
+    industry: "家政服务",
+    customerType: "区域连锁服务平台",
+    onboarding: "按阶段接入",
+    challenge: "多岗位、多服务形态并行，结算口径与材料留存缺少统一流程。",
+    efficiency: "对账协作更顺畅",
+    cost: "结算成本更可控",
+    compliance: "争议处理证据链更完整",
+    tags: ["solutions/housekeeping", "services/settlement"],
+  },
 ];

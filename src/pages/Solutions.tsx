@@ -1,120 +1,161 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Truck, Zap, Home, Bike, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Navbar from '@/sections/Navbar';
-import Footer from '@/sections/Footer';
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Bike, Car, Home, Package, Truck } from "lucide-react";
+import Navbar from "@/sections/Navbar";
+import Footer from "@/sections/Footer";
+import { Button } from "@/components/ui/button";
+import { PageHero } from "@/components/site/PageHero";
+import { ProcessSteps, type ProcessStepItem } from "@/components/site/ProcessSteps";
+import { TrustEvidence } from "@/components/site/TrustEvidence";
+import { getPageVisual } from "@/lib/siteVisual";
 
-const solutions = [
+const SOLUTION_CARDS: Array<{
+  id: string;
+  title: string;
+  desc: string;
+  href: string;
+  Icon: typeof Truck;
+  highlights: string[];
+}> = [
   {
-    id: 'delivery',
-    title: '同城配送',
-    icon: Truck,
-    color: 'from-[#fbc16a] to-[#fbc779]',
-    path: '/solutions/delivery',
-    description: '覆盖全城的配送网络，快速匹配专业配送人员，确保订单及时交付，提升客户满意度。',
-    features: ['实时订单处理', '专业配送团队', '溯源追踪系统', '保险保障'],
+    id: "delivery",
+    title: "外卖配送",
+    desc: "围绕骑手招募、结算与保障等关键环节，梳理一条可上线、可追溯的交付链路，支撑高峰期稳定运营。",
+    href: "/solutions/delivery",
+    Icon: Bike,
+    highlights: ["多城市/多团队结算口径梳理", "批量结算与对账协同", "短周期保障与理赔指引", "留痕与风险控制机制"],
   },
   {
-    id: 'housekeeping',
-    title: '家政保洁',
-    icon: Home,
-    color: 'from-[#fbc779] to-[#fbc16a]',
-    path: '/solutions/housekeeping',
-    description: '连接优质家政人员与家庭用户，提供上门保洁、家务帮手等多项服务，让生活更便利。',
-    features: ['严格人员审核', '灵活服务时间', '服务评价体系', '安全责任保险'],
+    id: "ride",
+    title: "网约车出行",
+    desc: "面向跨城市主体与多种收入结构，形成可配置的结算与合规处理路径，降低运营协作成本。",
+    href: "/solutions/ride",
+    Icon: Car,
+    highlights: ["组织与主体结构拆解", "结算规则与票据口径", "风控与异常复核流程", "阶段性接入与上线节奏"],
   },
   {
-    id: 'ride',
-    title: '通勤拼车',
-    icon: Bike,
-    color: 'from-[#fbc16a] to-[#fbc16a]',
-    path: '/solutions/ride',
-    description: '为企业员工提供便利的通勤服务，智能匹配拼车方案，降低企业交通成本，提升员工体验。',
-    features: ['智能路线规划', '企业团体方案', '费用透明计算', '安全担保机制'],
+    id: "housekeeping",
+    title: "家政服务",
+    desc: "把人员管理、服务结算与保障串到同一套流程里，让平台能更清晰地管理服务质量与风险边界。",
+    href: "/solutions/housekeeping",
+    Icon: Home,
+    highlights: ["人员档案与资质留存", "工时/项目制结算口径", "服务过程风险提示", "评价与运营复盘机制"],
   },
   {
-    id: 'logistics',
-    title: '物流仓储',
-    icon: Zap,
-    color: 'from-[#fbc779] to-[#fbc779]',
-    path: '/solutions/logistics',
-    description: '全链路物流解决方案，从仓储、分拣到配送，借助人工智能和灵活用工模式实现降本增效。',
-    features: ['智能仓储管理', '分拣优化算法', '快速配送网络', '数据分析报告'],
+    id: "logistics",
+    title: "物流仓配",
+    desc: "围绕波峰波谷用工与多岗位协同，把招募、到岗与结算衔接为可执行的交付路径，提升整体效率。",
+    href: "/solutions/logistics",
+    Icon: Package,
+    highlights: ["需求预测与岗位拆分", "招募筛选与到岗验收", "结算与对账留痕", "大促/旺季弹性策略"],
   },
 ];
 
+const SOLUTIONS_PROCESS: ProcessStepItem[] = [
+  { title: "诊断场景", desc: "明确业务边界、人员结构与关键风险点。" },
+  { title: "组合能力", desc: "将结算、保障、招聘等能力组合为可执行清单。" },
+  { title: "接入上线", desc: "分阶段对接数据与系统，联调验收后进入运营。" },
+  { title: "持续复盘", desc: "围绕效率、成本与风险指标持续优化规则与流程。" },
+];
+
 export default function Solutions() {
+  useEffect(() => window.scrollTo(0, 0), []);
+  const visual = getPageVisual("solutions");
+
   return (
-    <div className="min-h-screen bg-[hsl(var(--background))] text-foreground">
+    <div className="min-h-screen bg-white">
       <Navbar />
-      
-      <section className="relative pt-32 pb-20 bg-[hsl(var(--background))] overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -left-32 top-[-35%] h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle_at_center,rgba(251,193,106,0.16),transparent_60%)] blur-2xl" />
-          <div className="absolute -right-28 top-[-20%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent_60%)] blur-2xl" />
-        </div>
+
+      <PageHero
+        title={
+          <>
+            行业解决方案
+            <span className="block text-blue-700">从场景出发组合交付能力</span>
+          </>
+        }
+        desc="按不同行业的业务节奏与风险边界，组合“招—用—算—保—控”的能力模块，形成可上线、可复盘、可持续优化的交付路径。"
+        primaryHref="/about/contact"
+        primaryText="预约沟通"
+        secondaryHref="/downloads"
+        secondaryText="下载方案资料"
+        visualSrc={visual.src}
+        visualPos={visual.pos}
+      />
+
+      <section className="py-16 bg-white" id="industries">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold font-display text-foreground mb-6">行业解决方案</h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              覆盖多个行业场景，为企业数字化转型提供完整解决方案
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-semibold text-gray-900">四个行业入口</h2>
+            <p className="mt-2 text-gray-600 leading-relaxed">
+              选择与你当前业务最接近的场景，查看对应的痛点与交付节奏。
             </p>
-          </motion.div>
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {SOLUTION_CARDS.map(({ id, title, desc, href, Icon, highlights }) => (
+              <div
+                key={id}
+                className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm hover:shadow-lg transition"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="h-11 w-11 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div className="text-lg font-semibold text-gray-900">{title}</div>
+                </div>
+                <p className="mt-4 text-gray-600 leading-relaxed">{desc}</p>
+                <ul className="mt-5 space-y-2 text-sm text-gray-700">
+                  {highlights.map((h) => (
+                    <li key={h} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-600/70 flex-shrink-0" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7">
+                  <Link to={href}>
+                    <Button variant="outline" className="rounded-full w-full">
+                      查看行业详情
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[hsl(var(--background))]">
+      <ProcessSteps
+        title="方法论 / 交付路径（简版）"
+        desc="将“能做什么”拆成“怎么做”，便于你评估投入、节奏与风险控制点。"
+        steps={SOLUTIONS_PROCESS}
+      />
+
+      <TrustEvidence
+        title="合规与风险控制"
+        desc="行业方案不是堆功能，而是把资质、留痕与风控机制放进交付路径里，降低组织在快速扩张时的风险暴露。"
+      />
+
+      <section className="py-16 bg-gradient-to-br from-blue-700 to-indigo-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            {solutions.map((solution, index) => {
-              const Icon = solution.icon;
-              return (
-                <motion.div
-                  key={solution.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-[hsl(var(--card))] rounded-3xl border border-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.55)] hover:shadow-[0_22px_80px_rgba(0,0,0,0.65)] transition-all duration-300 overflow-hidden group"
-                >
-                  <div className={`h-32 bg-gradient-to-br ${solution.color}`} />
-                  <div className="p-8">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${solution.color} flex items-center justify-center`}>
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
-                    </div>
-                    
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {solution.description}
-                    </p>
-
-                    <div className="space-y-2 mb-8">
-                      {solution.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-sm text-foreground/80">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[rgba(251,193,106,0.9)]" />
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
-
-                    <Link to={solution.path} className="block">
-                      <Button className="w-full rounded-xl group">
-                        查看方案
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
-                  </div>
-                </motion.div>
-              );
-            })}
+          <div className="rounded-3xl bg-white/10 border border-white/15 p-10 md:flex md:items-center md:justify-between gap-8">
+            <div className="text-white">
+              <div className="text-2xl font-semibold">想快速评估你所在行业的可落地方案？</div>
+              <div className="mt-2 text-white/80 leading-relaxed">
+                提供你的组织结构、业务节奏与关键约束，我们会输出一份可执行的接入建议与阶段计划。
+              </div>
+            </div>
+            <div className="mt-8 md:mt-0 flex flex-wrap gap-3">
+              <Link to="/about/contact">
+                <Button className="rounded-full px-8">联系顾问</Button>
+              </Link>
+              <Link to="/downloads">
+                <Button variant="outline" className="rounded-full px-8 bg-white/90">
+                  下载方案资料
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

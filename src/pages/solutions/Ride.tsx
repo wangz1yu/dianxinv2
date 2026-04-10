@@ -1,118 +1,184 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Car, Clock, Shield, Wallet, Users, MapPin, CheckCircle, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Navbar from '@/sections/Navbar';
-import Footer from '@/sections/Footer';
-
-const features = [
-  { icon: Clock, title: '灵活结算周期', desc: '支持日结、周结、月结多种模式，满足不同司机需求' },
-  { icon: Shield, title: '全面保险保障', desc: '覆盖司机和乘客的意外险，按天计费，次日生效' },
-  { icon: Wallet, title: '智能分账系统', desc: '自动计算平台抽成和司机收入，账目清晰透明' },
-  { icon: MapPin, title: '全国覆盖服务', desc: '支持全国300+城市的司机结算服务，统一标准' },
-];
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import Navbar from "@/sections/Navbar";
+import Footer from "@/sections/Footer";
+import { Button } from "@/components/ui/button";
+import { PageHero } from "@/components/site/PageHero";
+import { ProcessSteps } from "@/components/site/ProcessSteps";
+import { TrustEvidence } from "@/components/site/TrustEvidence";
+import { CaseEvidence } from "@/components/site/CaseEvidence";
+import { getPageVisual } from "@/lib/siteVisual";
 
 export default function Ride() {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => window.scrollTo(0, 0), []);
+  const visual = getPageVisual("solutions/ride");
+
+  const combo: Array<{
+    title: string;
+    desc: string;
+    bullets: string[];
+    href?: string;
+  }> = [
+    {
+      title: "灵工结算",
+      desc: "把司机收入结构与平台规则落到可配置口径，支撑多城市、多主体协作。",
+      bullets: ["规则可配置（按主体/城市/项目）", "对账与异常复核流程", "票据/材料留痕可追溯"],
+      href: "/services/settlement",
+    },
+    {
+      title: "日结保险",
+      desc: "按场景配置保障组合，并与司机名单变更、材料指引与理赔协同衔接。",
+      bullets: ["保障组合与边界说明", "投保/名单流程自动化", "理赔协同与留痕沉淀"],
+      href: "/services/insurance",
+    },
+    {
+      title: "合规与风控交付",
+      desc: "把关键合规动作放进交付路径，形成一致的审计与追溯证据链。",
+      bullets: ["身份/资质校验与材料留存", "异常识别与复核机制", "权限与操作留痕"],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
-      <section className="pt-32 pb-20 bg-gradient-to-br from-indigo-600 to-purple-700">
+
+      <PageHero
+        title={
+          <>
+            网约车出行
+            <span className="block text-blue-700">面向多主体的结算与合规交付路径</span>
+          </>
+        }
+        desc="在跨城市、多主体与多种收入结构的场景下，通过可配置规则、留痕与风控机制，降低协作成本，让运营口径更统一、更可控。"
+        primaryHref="/about/contact"
+        primaryText="联系顾问"
+        secondaryHref="/downloads"
+        secondaryText="下载方案资料"
+        visualSrc={visual.src}
+        visualPos={visual.pos}
+      />
+
+      <section className="py-16 bg-white" id="pain">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 rounded-full text-white text-sm mb-6">
-              <Car className="w-4 h-4" />
-              网约车解决方案
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">网约车行业灵活用工解决方案</h1>
-            <p className="text-indigo-100 text-lg mb-8 leading-relaxed">
-              为网约车平台提供司机结算、保险保障、合规管理等一站式服务，助力平台合规运营，提升司机满意度。
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-semibold text-gray-900">常见痛点</h2>
+            <p className="mt-2 text-gray-600 leading-relaxed">
+              网约车业务常见挑战集中在“多主体协作”与“合规口径一致性”。
             </p>
-            <Button className="bg-white text-indigo-600 hover:bg-gray-100 rounded-full px-8">
-              立即咨询
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+          </div>
 
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">核心服务能力</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">专为网约车行业定制，满足司机管理和结算的全方位需求</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow">
-                <div className="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
-                  <feature.icon className="w-7 h-7 text-indigo-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.desc}</p>
-              </motion.div>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: "多主体口径难统一",
+                desc: "多城市与多主体并行运营，结算规则、对账口径与权限边界难以一致。",
+              },
+              {
+                title: "票据与材料处理复杂",
+                desc: "票据口径、材料留存与审计要求交织，容易造成处理反复与协作成本上升。",
+              },
+              {
+                title: "异常与争议处理缺乏证据链",
+                desc: "异常订单、投诉与争议需要可追溯留痕与复核机制支撑。",
+              },
+            ].map((p) => (
+              <div
+                key={p.title}
+                className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm"
+              >
+                <div className="text-lg font-semibold text-gray-900">{p.title}</div>
+                <div className="mt-3 text-gray-600 leading-relaxed">{p.desc}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-[#F5F7FA]" id="combination">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">合规运营保障</h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                网约车行业面临严格的合规要求，点薪云提供完整的合规解决方案，帮助平台规避用工风险，确保合法合规运营。
-              </p>
-              
-              <div className="space-y-4">
-                {['司机身份实名认证，对接公安系统', '电子合同签署，具有法律效力', '税务合规处理，降低税务风险', '社保代缴服务，保障司机权益'].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-700">{item}</span>
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-semibold text-gray-900">方案组合（能力拼装）</h2>
+            <p className="mt-2 text-gray-600 leading-relaxed">
+              以规则配置与留痕为核心，把关键动作拆成模块组合，便于分阶段接入与验证。
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {combo.map((m) => (
+              <div
+                key={m.title}
+                className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm"
+              >
+                <div className="text-lg font-semibold text-gray-900">{m.title}</div>
+                <div className="mt-3 text-gray-600 leading-relaxed">{m.desc}</div>
+                <ul className="mt-5 space-y-2 text-sm text-gray-700">
+                  {m.bullets.map((b) => (
+                    <li key={b} className="flex gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-blue-700 mt-0.5 flex-shrink-0" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+                {m.href ? (
+                  <div className="mt-6">
+                    <Link to={m.href}>
+                      <Button variant="outline" className="rounded-full w-full">
+                        查看模块详情
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </div>
-                ))}
+                ) : null}
               </div>
-            </motion.div>
-            
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-8">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                  <Users className="w-10 h-10 text-indigo-600 mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">50万+</div>
-                  <div className="text-gray-600 text-sm">服务司机</div>
-                </div>
-                <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                  <MapPin className="w-10 h-10 text-indigo-600 mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">300+</div>
-                  <div className="text-gray-600 text-sm">覆盖城市</div>
-                </div>
-                <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                  <Shield className="w-10 h-10 text-indigo-600 mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">100%</div>
-                  <div className="text-gray-600 text-sm">合规认证</div>
-                </div>
-                <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-                  <Wallet className="w-10 h-10 text-indigo-600 mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">25%</div>
-                  <div className="text-gray-600 text-sm">成本降低</div>
-                </div>
-              </div>
-            </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-br from-gray-900 to-gray-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">让网约车运营更简单</h2>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">联系我们的专业团队，获取定制化的网约车行业解决方案</p>
-            <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-8">立即咨询</Button>
-          </motion.div>
+      <ProcessSteps
+        id="rollout"
+        title="接入与上线节奏"
+        desc="建议按主体/城市分阶段上线，降低一次性改造风险。"
+        steps={[
+          { title: "明确主体与口径", desc: "对齐组织结构、结算对象与规则边界。" },
+          { title: "梳理材料与流程", desc: "梳理票据口径、材料留存与角色分工。" },
+          { title: "配置与联调验收", desc: "配置规则、权限与风控，完成接口联调与验收。" },
+          { title: "分批上线与复盘", desc: "分批上线并复盘争议/异常处理效率，持续迭代。" },
+        ]}
+      />
+
+      <TrustEvidence
+        title="合规与风险控制"
+        desc="通过资质与安全能力、操作留痕与异常复核机制，让合规动作可执行、可审计、可追溯。"
+      />
+
+      <CaseEvidence
+        tag="solutions/ride"
+        title="案例摘要"
+        desc="以下为与网约车场景相关的交付摘要（节选 1-2 条），可前往案例中心查看更多。"
+      />
+
+      <section className="py-16 bg-gradient-to-br from-blue-700 to-indigo-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-white/10 border border-white/15 p-10 md:flex md:items-center md:justify-between gap-8">
+            <div className="text-white">
+              <div className="text-2xl font-semibold">需要一份“多主体”接入建议？</div>
+              <div className="mt-2 text-white/80 leading-relaxed">
+                欢迎提供你的城市覆盖、主体结构与现有口径，我们会输出一份阶段计划与风险控制点清单。
+              </div>
+            </div>
+            <div className="mt-8 md:mt-0 flex flex-wrap gap-3">
+              <Link to="/about/contact">
+                <Button className="rounded-full px-8">联系顾问</Button>
+              </Link>
+              <Link to="/downloads">
+                <Button variant="outline" className="rounded-full px-8 bg-white/90">
+                  下载方案资料
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
