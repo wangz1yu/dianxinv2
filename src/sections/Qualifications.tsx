@@ -73,8 +73,21 @@ export default function Qualifications() {
   );
 
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-12 bg-gray-50">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-multiply"
+        aria-hidden
+        style={{
+          backgroundImage: [
+            `url(${assetUrl('images/qualifications/qualification-1-thumb.svg')})`,
+            `url(${assetUrl('images/qualifications/qualification-2-thumb.svg')})`,
+          ].join(', '),
+          backgroundRepeat: 'no-repeat, no-repeat',
+          backgroundSize: '520px auto, 460px auto',
+          backgroundPosition: '110% 18%, -10% 82%',
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
