@@ -1,102 +1,168 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Users, Search, Clock, CheckCircle, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Navbar from '@/sections/Navbar';
-import Footer from '@/sections/Footer';
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { CheckCircle2 } from "lucide-react";
+import Navbar from "@/sections/Navbar";
+import Footer from "@/sections/Footer";
+import { Button } from "@/components/ui/button";
+import { PageHero } from "@/components/site/PageHero";
+import { ProcessSteps, type ProcessStepItem } from "@/components/site/ProcessSteps";
+import { TrustEvidence } from "@/components/site/TrustEvidence";
+import { CaseEvidence } from "@/components/site/CaseEvidence";
+import { getPageVisual } from "@/lib/siteVisual";
 
-const features = [
-  { icon: Users, title: '500万+人才库', desc: '覆盖全国的灵活用工人才网络' },
-  { icon: Search, title: '智能匹配', desc: 'AI算法精准匹配岗位需求' },
-  { icon: Clock, title: '快速到岗', desc: '从发布需求到人员到岗最快24小时' },
-  { icon: CheckCircle, title: '资质审核', desc: '严格的身份和资质审核' },
+const PAIN_POINTS = [
+  {
+    title: "需求波动大",
+    desc: "旺季临时增员、淡季快速收缩，传统招聘与管理方式很难跟上节奏。",
+  },
+  {
+    title: "到岗质量不可控",
+    desc: "简历筛选、面试与到岗衔接分散，影响岗位匹配与现场稳定性。",
+  },
+  {
+    title: "合规入职与后续结算断层",
+    desc: "入职资料、用工关系与结算链路割裂，导致后续对账与风险管理成本上升。",
+  },
+];
+
+const STEPS: ProcessStepItem[] = [
+  { title: "拆解需求", desc: "明确岗位画像、排班节奏与验收标准。" },
+  { title: "招募筛选", desc: "多渠道触达，按标准化流程筛选候选人。" },
+  { title: "到岗衔接", desc: "身份与资料核验，协助完成到岗与入职动作。" },
+  { title: "运营复盘", desc: "按周期复盘到岗质量与流失原因，优化供给。" },
+];
+
+const FAQ: Array<{ q: string; a: string }> = [
+  {
+    q: "适合哪些类型的用工需求？",
+    a: "适用于多城市、多门店、多岗位的灵活用工需求，尤其在波峰波谷明显、需要快速补充人力的场景。",
+  },
+  {
+    q: "如何保证到岗质量？",
+    a: "以岗位画像与验收标准为核心，通过筛选流程与到岗核验机制，减少“到岗即不适配”的情况。",
+  },
+  {
+    q: "招聘与结算可以一起交付吗？",
+    a: "可以。招聘、入职与结算属于同一条交付链路，我们支持按你的系统现状逐步把链路连起来。",
+  },
+  {
+    q: "上线后能否持续优化供给？",
+    a: "支持。通过周期性复盘与指标看板，持续优化渠道策略、岗位画像与运营节奏。",
+  },
 ];
 
 export default function Recruitment() {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => window.scrollTo(0, 0), []);
+  const visual = getPageVisual("services/recruitment");
 
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
-      <section className="pt-32 pb-20 bg-gradient-to-br from-indigo-600 to-indigo-800">
+
+      <PageHero
+        title={
+          <>
+            用工招聘
+            <span className="block text-blue-700">把招募到到岗做成可交付路径</span>
+          </>
+        }
+        desc="围绕岗位画像、筛选流程与到岗衔接，提供可复用的招聘交付能力，并支持与结算链路打通，降低运营波动。"
+        primaryHref="/about/contact"
+        primaryText="联系顾问"
+        secondaryHref="/downloads"
+        secondaryText="下载方案资料"
+        visualSrc={visual.src}
+        visualPos={visual.pos}
+      />
+
+      <section className="py-16 bg-white" id="pain">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 rounded-full text-white text-sm mb-6">
-              <Users className="w-4 h-4" />
-              用工招聘
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">灵活用工招聘服务</h1>
-            <p className="text-indigo-100 text-lg mb-8 leading-relaxed">
-              覆盖全国的灵活用工人才网络，智能匹配算法快速找到合适人才，从发布需求到人员到岗最快24小时。
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-semibold text-gray-900">常见痛点</h2>
+            <p className="mt-2 text-gray-600 leading-relaxed">
+              招聘的难点往往不是“没人”，而是“招得到、到得上、留得住、算得清”。
             </p>
-            <Link to="/about/contact">
-              <Button className="bg-white text-indigo-600 hover:bg-gray-100 rounded-full px-8">
-                立即咨询
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">服务优势</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">海量人才库，快速响应企业用工需求</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow text-center">
-                <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <feature.icon className="w-8 h-8 text-indigo-600" />
+          </div>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {PAIN_POINTS.map((p) => (
+              <div
+                key={p.title}
+                className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm"
+              >
+                <div className="text-lg font-semibold text-gray-900">
+                  {p.title}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.desc}</p>
-              </motion.div>
+                <div className="mt-3 text-gray-600 leading-relaxed">{p.desc}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <ProcessSteps
+        title="方案路径"
+        desc="把招聘过程拆解为可执行步骤，便于评估投入、节奏与交付边界。"
+        steps={STEPS}
+      />
+
+      <TrustEvidence
+        title="风控与合规"
+        desc="招聘链路同样需要留痕与可追溯：身份核验、资料管理与关键节点记录，帮助企业降低用工与结算环节的风险。"
+      />
+
+      <CaseEvidence
+        tag="services/recruitment"
+        title="案例摘要"
+        desc="以下为与招聘/用工交付相关的场景摘要，可点击进入案例中心查看更多。"
+      />
+
+      <section className="py-16 bg-gray-50" id="faq">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">服务流程</h2>
-              <div className="space-y-6">
-                {[
-                  { step: '01', title: '发布需求', desc: '填写岗位需求，包括人数、技能、薪资等' },
-                  { step: '02', title: '智能匹配', desc: 'AI算法从人才库中精准匹配候选人' },
-                  { step: '03', title: '面试筛选', desc: '安排面试，筛选合适人员' },
-                  { step: '04', title: '人员到岗', desc: '签订合同，人员快速到岗工作' },
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold text-sm">{item.step}</span>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">{item.title}</h3>
-                      <p className="text-gray-600 text-sm">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-semibold text-gray-900">FAQ</h2>
+            <p className="mt-2 text-gray-600 leading-relaxed">
+              如果你希望把招聘与结算/保险一起做成完整链路，可以直接联系我们讨论组合方案。
+            </p>
+          </div>
+          <div className="mt-8 grid gap-4">
+            {FAQ.map((it) => (
+              <details
+                key={it.q}
+                className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+              >
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-6">
+                  <span className="font-semibold text-gray-900">{it.q}</span>
+                  <CheckCircle2 className="h-5 w-5 text-blue-700 flex-shrink-0 mt-0.5" />
+                </summary>
+                <div className="mt-3 text-gray-600 leading-relaxed">{it.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-to-br from-blue-700 to-indigo-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-white/10 border border-white/15 p-10 md:flex md:items-center md:justify-between gap-8">
+            <div className="text-white">
+              <div className="text-2xl font-semibold">想把增员做得更可控？</div>
+              <div className="mt-2 text-white/80 leading-relaxed">
+                我们可以基于你的岗位画像与波峰波谷节奏，给出一份可落地的招聘交付建议与运营打法。
               </div>
-            </motion.div>
-            
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">覆盖行业</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {['外卖配送', '网约车', '家政服务', '电商物流', '零售促销', '活动执行'].map((item, index) => (
-                  <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm">
-                    <span className="text-gray-700 font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+            </div>
+            <div className="mt-8 md:mt-0 flex flex-wrap gap-3">
+              <Link to="/about/contact">
+                <Button className="rounded-full px-8">联系顾问</Button>
+              </Link>
+              <Link to="/downloads">
+                <Button
+                  variant="outline"
+                  className="rounded-full px-8 bg-white/90"
+                >
+                  下载方案资料
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

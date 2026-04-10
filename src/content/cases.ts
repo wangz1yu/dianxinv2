@@ -32,6 +32,17 @@ export const CASES: CaseItem[] = [
     tags: ["services/settlement", "solutions/delivery"],
   },
   {
+    id: "insurance",
+    industry: "即时用工保障",
+    customerType: "多城市运营团队",
+    onboarding: "按方案协同",
+    challenge: "临时用工人员流动快，保障配置与理赔协同缺乏统一口径。",
+    efficiency: "投保流程更顺畅",
+    cost: "保障成本更可控",
+    compliance: "理赔留痕更完整",
+    tags: ["services/insurance"],
+  },
+  {
     id: "ride",
     industry: "网约车",
     customerType: "多城市运力服务商",
