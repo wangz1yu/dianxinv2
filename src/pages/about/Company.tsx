@@ -1,105 +1,211 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Award, Users, TrendingUp, Shield, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Navbar from '@/sections/Navbar';
-import Footer from '@/sections/Footer';
+import { useEffect } from "react";
+import { Award, Shield, TrendingUp, Users, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import Navbar from "@/sections/Navbar";
+import Footer from "@/sections/Footer";
+import { Button } from "@/components/ui/button";
+import { PageHero } from "@/components/site/PageHero";
+import { SectionNav } from "@/components/site/SectionNav";
+import { getPageVisual } from "@/lib/siteVisual";
 
-const stats = [
-  { value: '8年', label: '行业经验' },
-  { value: '3000+', label: '服务企业' },
-  { value: '20万+', label: '注册人才' },
-  { value: '20亿+', label: '年发薪额' },
+const STATS = [
+  { value: "8年+", label: "行业深耕" },
+  { value: "3000+", label: "服务企业" },
+  { value: "20万+", label: "服务人才" },
+  { value: "多场景", label: "行业覆盖" },
 ];
 
-const values = [
-  { icon: Award, title: '专业', desc: '4年专注灵活用工领域，深耕行业know-how' },
-  { icon: Shield, title: '合规', desc: '严格遵守法律法规，确保每一笔结算合规安全' },
-  { icon: TrendingUp, title: '创新', desc: '持续技术创新，引领行业发展方向' },
-  { icon: Users, title: '共赢', desc: '与客户共同成长，实现多方共赢' },
+const VALUES = [
+  {
+    icon: Award,
+    title: "专业交付",
+    desc: "以“口径对齐—规则配置—异常复核—留痕归档”为主线，把方案做成可执行清单。",
+  },
+  {
+    icon: Shield,
+    title: "合规优先",
+    desc: "围绕资质、票税与风控机制建立证据链，帮助你在审计与监管口径下稳态运行。",
+  },
+  {
+    icon: TrendingUp,
+    title: "效率可量化",
+    desc: "用数据口径与流程拆解明确“节省在哪里”，让管理节省与人效提升可解释、可追溯。",
+  },
+  {
+    icon: Users,
+    title: "长期共建",
+    desc: "从试点到规模化运营，持续复盘指标、规则与流程，保持交付稳定性与扩展性。",
+  },
+];
+
+const DELIVERY_STEPS = [
+  {
+    title: "对齐口径与边界",
+    desc: "梳理主体、城市、工种与票税口径，明确规则与异常处理边界。",
+  },
+  {
+    title: "配置与联调",
+    desc: "建立结算规则、风控阈值与留痕材料清单，并完成数据对接与验收。",
+  },
+  {
+    title: "试点上线与复盘",
+    desc: "以小规模场景验证流程与指标，稳定后再逐步复制到更多城市/业务线。",
+  },
 ];
 
 export default function Company() {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => window.scrollTo(0, 0), []);
+  const visual = getPageVisual("about/company");
 
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
-      <section className="pt-32 pb-20 bg-gradient-to-br from-blue-600 to-blue-800">
+
+      <PageHero
+        title={
+          <>
+            关于点薪云
+            <span className="block text-blue-700">把灵活用工做成“可落地的交付体系”</span>
+          </>
+        }
+        desc="我们聚焦灵活用工的结算、票税与风控场景，通过数字化工具与咨询式交付，把复杂链路拆解为可执行的流程与证据链。"
+        primaryHref="/about/contact"
+        primaryText="联系顾问"
+        secondaryHref="/downloads"
+        secondaryText="下载资料包"
+        visualSrc={visual.src}
+        visualPos={visual.pos}
+      />
+
+      <SectionNav
+        items={[
+          { id: "overview", label: "概览" },
+          { id: "values", label: "价值观" },
+          { id: "delivery", label: "交付方式" },
+          { id: "cta", label: "下一步" },
+        ]}
+      />
+
+      <section className="py-16 bg-white border-b border-gray-100" id="overview">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">关于点薪云</h1>
-            <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-              安徽点薪网络科技有限公司成立于2023年01月12日，总部位于安徽省合肥市蜀山区，是一家专注于灵活用工领域的科技型企业。
-              我们致力于通过数字化工具，为企业提供智能化、自动化的一站式用工解决方案。
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-semibold text-gray-900">公司概览</h2>
+            <p className="mt-2 text-gray-600 leading-relaxed">
+              从业务、财务到法务，点薪云希望用同一套口径把“用工—结算—合规—留痕”串起来，减少跨部门沟通与反复对账。
             </p>
-            <Button className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
-              联系我们
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </motion.div>
-            ))}
           </div>
-        </div>
-      </section>
 
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">我们的价值观</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">点薪云始终坚持的核心理念</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <value.icon className="w-8 h-8 text-blue-600" />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {STATS.map((s) => (
+              <div
+                key={s.label}
+                className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm hover:shadow-lg transition"
+              >
+                <div className="text-3xl font-semibold text-blue-700">
+                  {s.value}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600">{value.desc}</p>
-              </motion.div>
+                <div className="mt-2 text-sm text-gray-600">{s.label}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-[#F5F7FA] border-b border-gray-100" id="values">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">我们的使命</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                让灵活用工更简单。我们相信，通过技术创新和服务升级，可以为企业提供更高效、更合规、更便捷的用工解决方案。
-              </p>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                我们的愿景是成为中国领先的灵活用工服务平台，为千万企业和自由职业者创造价值，推动灵活用工行业的健康发展。
-              </p>
-            </motion.div>
-            
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">核心优势</h3>
-              <div className="space-y-4">
-                {['8年行业深耕，积累了丰富的行业经验', '专业的技术团队，持续创新产品能力', '完善的服务体系，7×12小时客户支持', '严格的风控体系，保障资金安全'].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full" />
-                    <span className="text-gray-700">{item}</span>
-                  </div>
-                ))}
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-semibold text-gray-900">我们坚持的交付原则</h2>
+            <p className="mt-2 text-gray-600 leading-relaxed">
+              不追求堆功能，而是让每一笔结算、每一次异常复核都能被解释、被追溯。
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {VALUES.map((v) => (
+              <div
+                key={v.title}
+                className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm hover:shadow-lg transition"
+              >
+                <div className="h-12 w-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center">
+                  <v.icon className="h-6 w-6" />
+                </div>
+                <div className="mt-5 text-lg font-semibold text-gray-900">
+                  {v.title}
+                </div>
+                <div className="mt-2 text-gray-600 leading-relaxed text-sm">
+                  {v.desc}
+                </div>
               </div>
-            </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white" id="delivery">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between gap-6 flex-wrap">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-semibold text-gray-900">
+                我们如何把方案落到系统与流程
+              </h2>
+              <p className="mt-2 text-gray-600 leading-relaxed">
+                适配不同城市与业务线，优先跑通“可复制”的最小闭环，再逐步扩大覆盖。
+              </p>
+            </div>
+            <Link to="/roi-calculator" className="text-sm font-medium text-blue-700 hover:text-blue-800">
+              先做费用试算
+              <ArrowRight className="inline-block ml-2 h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {DELIVERY_STEPS.map((step, i) => (
+              <div
+                key={step.title}
+                className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-lg transition"
+              >
+                <div className="text-sm font-semibold text-blue-700">
+                  第 {i + 1} 步
+                </div>
+                <div className="mt-2 text-xl font-semibold text-gray-900">
+                  {step.title}
+                </div>
+                <div className="mt-3 text-gray-600 leading-relaxed">
+                  {step.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="py-16 bg-gradient-to-br from-blue-700 to-indigo-800"
+        id="cta"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-white/10 border border-white/15 p-10 md:flex md:items-center md:justify-between gap-8">
+            <div className="text-white">
+              <div className="text-2xl font-semibold">
+                想把你的场景拆成一份可执行计划？
+              </div>
+              <div className="mt-2 text-white/80 leading-relaxed">
+                留下行业与规模信息，我们会回传一份“交付节奏 + 风险边界 + 口径对齐清单”。
+              </div>
+            </div>
+            <div className="mt-8 md:mt-0 flex flex-wrap gap-3">
+              <Link to="/about/contact">
+                <Button className="rounded-full px-8">联系顾问</Button>
+              </Link>
+              <Link to="/downloads">
+                <Button
+                  variant="outline"
+                  className="rounded-full px-8 bg-white/90"
+                >
+                  下载资料包
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

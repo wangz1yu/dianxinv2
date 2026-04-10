@@ -29,6 +29,14 @@ export function getPageVisual(key: VisualKey) {
       return { src: assetUrl("images/service-recruitment.jpg"), pos: "48% 30%" };
     case "insights":
       return { src: assetUrl("images/service-settlement.jpg"), pos: "60% 32%" };
+    case "about/company":
+      return { src: assetUrl("images/hero-dashboard.jpg"), pos: "60% 18%" };
+    case "about/history":
+      return { src: assetUrl("images/service-insurance.jpg"), pos: "58% 40%" };
+    case "about/contact":
+      return { src: assetUrl("images/service-recruitment.jpg"), pos: "48% 28%" };
+    case "roi":
+      return { src: assetUrl("images/service-settlement.jpg"), pos: "62% 28%" };
     case "services/settlement":
       return { src: assetUrl("images/service-settlement.jpg"), pos: "50% 35%" };
     case "services/insurance":
