@@ -55,6 +55,8 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const isHome = location.pathname === '/';
+  const effectiveScrolled = isScrolled || !isHome;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,7 +78,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <nav
           className={`mt-4 flex items-center justify-between gap-3 rounded-2xl border transition-all duration-300 ${
-            isScrolled
+            effectiveScrolled
               ? 'border-white/10 bg-[hsl(var(--background))]/80 shadow-[0_18px_60px_rgba(0,0,0,0.45)] backdrop-blur'
               : 'border-white/10 bg-white/5 text-white backdrop-blur'
           } px-4 py-3`}
@@ -89,7 +91,7 @@ export default function Navbar() {
               className="w-8 h-8 object-contain"
             />
             <span className={`font-display text-lg tracking-tight ${
-              isScrolled ? 'text-foreground' : 'text-white'
+              effectiveScrolled ? 'text-foreground' : 'text-white'
             }`}>
               点薪云
             </span>
@@ -107,7 +109,7 @@ export default function Navbar() {
                 <Link
                   to={item.href}
                   className={`group relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors ${
-                    isScrolled
+                    effectiveScrolled
                       ? isActive(item.href)
                         ? 'text-foreground'
                         : 'text-foreground/70 hover:text-foreground'
@@ -124,7 +126,7 @@ export default function Navbar() {
                   )}
                   <span
                     className={`absolute inset-x-3 -bottom-0.5 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
-                      isScrolled ? 'bg-[rgba(251,193,106,0.55)]' : 'bg-[rgba(251,193,106,0.45)]'
+                      effectiveScrolled ? 'bg-[rgba(251,193,106,0.55)]' : 'bg-[rgba(251,193,106,0.45)]'
                     } ${isActive(item.href) ? 'scale-x-100' : ''}`}
                   />
                 </Link>
@@ -155,7 +157,7 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 className={`rounded-full ${
-                  isScrolled ? 'text-foreground/80 hover:text-foreground hover:bg-white/5' : 'text-white/80 hover:text-white hover:bg-white/10'
+                  effectiveScrolled ? 'text-foreground/80 hover:text-foreground hover:bg-white/5' : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 登录结算系统
@@ -171,7 +173,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             className={`lg:hidden p-2 rounded-xl transition-colors ${
-              isScrolled ? 'text-foreground hover:bg-white/5' : 'text-white hover:bg-white/10'
+              effectiveScrolled ? 'text-foreground hover:bg-white/5' : 'text-white hover:bg-white/10'
             }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >

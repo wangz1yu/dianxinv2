@@ -27,6 +27,11 @@ function RouteTracker() {
   useEffect(() => {
     captureAttribution();
     trackEvent('page_view', { path: location.pathname });
+
+    // 子页面（非首页）使用浅色主题变量，避免出现“白底白字”
+    // 首页保持原深色主题（Hero/全站暗色氛围）
+    const isHome = location.pathname === '/';
+    document.body.classList.toggle('subpage-light', !isHome);
   }, [location.pathname]);
 
   return null;

@@ -73,6 +73,40 @@
   }
 }
 
+/* ------------------------------------------------------------
+   subpage-light: light theme for secondary pages
+   Goal: fix low-contrast issues (e.g. white text on white sections)
+   ------------------------------------------------------------ */
+body.subpage-light {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
+
+  --border: 215 16% 84% / 0.85;
+  --input: 215 16% 84% / 0.85;
+}
+
+/* Tone down dark-lux overlays on light pages */
+body.subpage-light::before {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+body.subpage-light::after {
+  opacity: 0;
+}
+
 @layer base {
   * {
     @apply border-border;
