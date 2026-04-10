@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { trackEvent } from '@/lib/analytics';
 import { HOME25_CASES } from '@/content/home25.copy';
-import { assetUrl } from '@/lib/assets';
+import { getCaseAccent } from '@/lib/homeVisual';
 
 const iconMap = {
   外卖配送: Clock,
@@ -37,14 +37,15 @@ export default function SuccessCases() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative bg-[hsl(var(--card))] rounded-3xl p-8 border border-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.55)] hover:shadow-[0_22px_80px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  className="group relative bg-[hsl(var(--card))] rounded-3xl p-8 border border-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.55)] hover:shadow-[0_22px_80px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   <div className="absolute right-4 top-4 h-12 w-20 overflow-hidden rounded-xl border border-white/10 opacity-80">
                     <img
-                      src={assetUrl("images/hero-dashboard.jpg")}
+                      src={getCaseAccent(item.industry).src}
                       alt=""
                       aria-hidden
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      style={{ objectPosition: getCaseAccent(item.industry).pos }}
                       loading="lazy"
                     />
                   </div>
