@@ -2,6 +2,10 @@ import { motion } from "framer-motion";
 import { HOME25_ECOSYSTEM } from "@/content/home25.copy";
 import { assetUrl } from "@/lib/assets";
 
+const GRAIN_SVG = encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="160" height="160" filter="url(#n)" opacity=".26"/></svg>`
+);
+
 export default function SolutionOverview() {
   const { title, description, items } = HOME25_ECOSYSTEM;
 
@@ -33,7 +37,7 @@ export default function SolutionOverview() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: i * 0.04 }}
                   onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-                  className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-800 hover:shadow-md hover:border-gray-300 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-800 transition hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   {it.label}
                 </motion.button>
@@ -54,13 +58,22 @@ export default function SolutionOverview() {
                 alt=""
                 aria-hidden
                 className="h-[360px] w-full object-cover"
+                style={{ objectPosition: "60% 20%" }}
                 loading="lazy"
               />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(600px_280px_at_20%_10%,rgba(59,130,246,0.35),transparent_60%)]" />
               <div
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
                     "linear-gradient(180deg, rgba(245,247,250,0.0), rgba(245,247,250,0.55) 82%, rgba(245,247,250,0.85))",
+                }}
+              />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-multiply"
+                aria-hidden
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,${GRAIN_SVG}")`,
                 }}
               />
             </div>
