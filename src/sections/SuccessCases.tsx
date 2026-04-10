@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { trackEvent } from '@/lib/analytics';
 import { HOME25_CASES } from '@/content/home25.copy';
+import { assetUrl } from '@/lib/assets';
 
 const iconMap = {
   外卖配送: Clock,
@@ -30,27 +31,38 @@ export default function SuccessCases() {
           {HOME25_CASES.map((item, index) => {
             const Icon = iconMap[item.industry];
             return (
-              <motion.article
-                key={item.industry}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[hsl(var(--card))] rounded-3xl p-8 border border-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.55)] hover:shadow-[0_22px_80px_rgba(0,0,0,0.65)] transition-shadow"
-              >
-                <div className="w-11 h-11 rounded-xl bg-[rgba(251,193,106,0.14)] border border-[rgba(251,193,106,0.24)] text-[rgba(251,193,106,0.95)] flex items-center justify-center mb-5">
-                  <Icon className="w-5 h-5" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">{item.industry}</h3>
-                <p className="text-sm text-muted-foreground mb-4">客户类型：{item.customerType} · 接入时长：{item.onboarding}</p>
-                <p className="text-foreground/85 mb-4 leading-relaxed">{item.challenge}</p>
+              <Link key={item.industry} to="/cases" className="block">
+                <motion.article
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative bg-[hsl(var(--card))] rounded-3xl p-8 border border-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.55)] hover:shadow-[0_22px_80px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  <div className="absolute right-4 top-4 h-12 w-20 overflow-hidden rounded-xl border border-white/10 opacity-80">
+                    <img
+                      src={assetUrl("images/hero-dashboard.jpg")}
+                      alt=""
+                      aria-hidden
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
 
-                <div className="grid grid-cols-3 gap-3 pt-5 border-t border-white/10">
-                  <div><p className="text-xs text-muted-foreground">效率提升</p><p className="text-sm font-semibold text-gold-grad">{item.efficiency}</p></div>
-                  <div><p className="text-xs text-muted-foreground">成本下降</p><p className="text-sm font-semibold text-gold-grad">{item.cost}</p></div>
-                  <div><p className="text-xs text-muted-foreground">合规风险</p><p className="text-sm font-semibold text-foreground">{item.compliance}</p></div>
-                </div>
-              </motion.article>
+                  <div className="w-11 h-11 rounded-xl bg-[rgba(251,193,106,0.14)] border border-[rgba(251,193,106,0.24)] text-[rgba(251,193,106,0.95)] flex items-center justify-center mb-5">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{item.industry}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">客户类型：{item.customerType} · 接入时长：{item.onboarding}</p>
+                  <p className="text-foreground/85 mb-4 leading-relaxed">{item.challenge}</p>
+
+                  <div className="grid grid-cols-3 gap-3 pt-5 border-t border-white/10">
+                    <div><p className="text-xs text-muted-foreground">效率提升</p><p className="text-sm font-semibold text-gold-grad">{item.efficiency}</p></div>
+                    <div><p className="text-xs text-muted-foreground">成本下降</p><p className="text-sm font-semibold text-gold-grad">{item.cost}</p></div>
+                    <div><p className="text-xs text-muted-foreground">合规风险</p><p className="text-sm font-semibold text-foreground">{item.compliance}</p></div>
+                  </div>
+                </motion.article>
+              </Link>
             );
           })}
         </div>
