@@ -85,17 +85,27 @@ export default function Contact() {
         attribution: getAttribution(),
       };
 
-      const response = await fetch('/api/contact', {
+      // GitHub Pages 是静态站点：/api/contact 会返回 404.html（HTML），导致 JSON 解析报错。
+      // 因此生产环境默认走 Formspree（同时更适配无后端部署）。
+      const response = await fetch('https://formspree.io/f/mpqjabyr', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        const result = await response.json();
-        throw new Error(result?.error || "提交失败，请稍后重试");
+        let msg = "提交失败，请稍后重试";
+        try {
+          const result = await response.json();
+          msg = result?.error || result?.message || msg;
+        } catch {
+          const text = await response.text();
+          if (text) msg = text.slice(0, 180);
+        }
+        throw new Error(msg);
       }
 
       trackEvent("contact_submit", {
