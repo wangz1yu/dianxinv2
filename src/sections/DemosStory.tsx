@@ -41,6 +41,15 @@ export default function DemosStory() {
     };
   }, []);
 
+  const jumpTo = (idx: number) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const top = window.scrollY + rect.top;
+    const segment = (el.offsetHeight - window.innerHeight) / 3;
+    window.scrollTo({ top: top + segment * idx, behavior: "smooth" });
+  };
+
   return (
     <section ref={sectionRef} className="relative bg-white" style={{ height: "320vh" }}>
       <div className="sticky top-24 h-[calc(100vh-6rem)] flex items-center">
@@ -48,8 +57,11 @@ export default function DemosStory() {
           {/* indicator (no text, no copy changes) */}
           <div className="mx-auto mb-6 flex max-w-7xl items-center justify-center gap-2">
             {steps.map((s) => (
-              <span
+              <button
                 key={s}
+                type="button"
+                aria-label={`jump-${s}`}
+                onClick={() => jumpTo(s)}
                 className={`h-1.5 w-8 rounded-full transition-colors ${
                   active === s ? "bg-blue-600" : "bg-gray-200"
                 }`}
@@ -68,7 +80,7 @@ export default function DemosStory() {
                   filter: active === idx ? "blur(0px)" : "blur(2px)",
                 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className={`absolute inset-0 ${active === idx ? "pointer-events-auto" : "pointer-events-none"}`}
+                className={`absolute inset-0 z-10 ${active === idx ? "pointer-events-auto" : "pointer-events-none"}`}
               >
                 {idx === 0 ? <DemoSettlement embedded /> : null}
                 {idx === 1 ? <DemoContract embedded /> : null}
@@ -76,7 +88,7 @@ export default function DemosStory() {
               </motion.div>
             ))}
             {/* Spacer to give the absolute children height context */}
-            <div className="opacity-0">
+            <div className="opacity-0 pointer-events-none" aria-hidden>
               <DemoSettlement embedded />
             </div>
           </div>
@@ -85,4 +97,3 @@ export default function DemosStory() {
     </section>
   );
 }
-
