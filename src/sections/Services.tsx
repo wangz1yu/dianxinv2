@@ -42,7 +42,7 @@ export default function Services() {
   const [activeService, setActiveService] = useState(0);
 
   return (
-    <section className="py-24 bg-[hsl(var(--background))]">
+    <section id="services" className="py-24 bg-[hsl(var(--background))]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
