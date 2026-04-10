@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import type React from "react";
 import { HOME25_CASES } from "@/content/home25.copy";
-import { assetUrl } from "@/lib/assets";
+import { getProblemImage } from "@/lib/homeVisual";
 
 export default function ProblemStrip() {
   const items = HOME25_CASES;
@@ -26,15 +27,17 @@ export default function ProblemStrip() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") document.getElementById("cases")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="group cursor-pointer rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-              style={{
-                backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url(${assetUrl(
-                  "images/hero-dashboard.jpg"
-                )})`,
-                backgroundSize: "cover",
-                backgroundPosition: `${20 + idx * 30}% 30%`,
-              }}
+              className="group relative overflow-hidden cursor-pointer rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              style={(() => {
+                const v = getProblemImage(it.industry);
+                return {
+                  backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url(${v.src})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: v.pos,
+                } as React.CSSProperties;
+              })()}
             >
+              <div className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-blue-500/15 blur-2xl" />
               <div className="text-xs tracking-[0.18em] text-gray-500 mb-3">{it.industry}</div>
               <div className="text-gray-800 leading-relaxed">{it.challenge}</div>
               <div className="mt-5 h-px w-10 bg-[rgba(251,193,106,0.55)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform" />
