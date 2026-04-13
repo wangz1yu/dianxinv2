@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import DemoSettlement from "@/sections/DemoSettlement";
 import DemoContract from "@/sections/DemoContract";
 import DemoRiskControl from "@/sections/DemoRiskControl";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
@@ -11,10 +12,12 @@ function clamp(n: number, min: number, max: number) {
 export default function DemosStory() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [active, setActive] = useState(0);
+  const isMobile = useIsMobile();
 
   const steps = useMemo(() => [0, 1, 2], []);
 
   useEffect(() => {
+    if (isMobile) return;
     const el = sectionRef.current;
     if (!el) return;
 
@@ -39,9 +42,13 @@ export default function DemosStory() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   const jumpTo = (idx: number) => {
+    if (isMobile) {
+      setActive(idx);
+      return;
+    }
     const el = sectionRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -51,6 +58,32 @@ export default function DemosStory() {
   };
 
   return (
+    isMobile ? (
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* indicator (mobile: tab switch) */}
+          <div className="mx-auto mb-6 flex items-center justify-center gap-2">
+            {steps.map((s) => (
+              <button
+                key={s}
+                type="button"
+                aria-label={`jump-${s}`}
+                onClick={() => jumpTo(s)}
+                className={`h-1.5 w-10 rounded-full transition-colors ${
+                  active === s ? "bg-blue-600" : "bg-gray-200"
+                }`}
+              />
+            ))}
+          </div>
+
+          <div>
+            {active === 0 ? <DemoSettlement embedded /> : null}
+            {active === 1 ? <DemoContract embedded /> : null}
+            {active === 2 ? <DemoRiskControl embedded /> : null}
+          </div>
+        </div>
+      </section>
+    ) : (
     <section ref={sectionRef} className="relative bg-white" style={{ height: "320vh" }}>
       <div className="sticky top-24 h-[calc(100vh-6rem)] flex items-center">
         <div className="w-full">
@@ -95,5 +128,6 @@ export default function DemosStory() {
         </div>
       </div>
     </section>
+    )
   );
 }

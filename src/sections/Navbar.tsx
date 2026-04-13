@@ -188,7 +188,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden mt-3 rounded-3xl border border-white/10 bg-[hsl(var(--card))]/95 shadow-[0_18px_70px_rgba(0,0,0,0.55)] backdrop-blur overflow-hidden">
-            <div className="p-4 space-y-2">
+            <div className="p-4 space-y-2 max-h-[calc(100vh-8rem)] overflow-y-auto overscroll-contain">
               {navItems.map((item) => (
                 <div key={item.label}>
                   <Link
